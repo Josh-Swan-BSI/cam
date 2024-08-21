@@ -55,7 +55,7 @@ $(document).ready(function() {
     var searchRow = $('<tr>').appendTo('#example thead');
 
     table.columns().eq(0).each(function (colIdx) {
-        if (colIdx === 2) { // For the 2nd column (Title)
+        if (colIdx === 2 || colIdx === 3) { // For the 2nd column (Title)
             // Create a select dropdown
             var select = $('<select>', {
                 'aria-label': 'Filter Title'
