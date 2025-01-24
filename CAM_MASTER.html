@@ -184,9 +184,20 @@ $(document).ready(function() {
             });
 
             // Apply the search on change
+            //select.on('change', function () {
+              //  var searchTerm = $(this).val().toLowerCase();
+                //table.column(colIdx).search(searchTerm ? searchTerm : '', true, false).draw();
+            //});
             select.on('change', function () {
-                var searchTerm = $(this).val().toLowerCase();
-                table.column(colIdx).search(searchTerm ? searchTerm : '', true, false).draw();
+                var searchTerm = $(this).val();
+
+                if (searchTerm) {
+                    // Escape special characters in the search term for regex safety
+                    var escapedSearchTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    table.column(colIdx).search(escapedSearchTerm, true, false).draw(); // Use regex for "contains" match
+                } else {
+                    table.column(colIdx).search('', false, false).draw(); // Clear search
+                }
             });
 
             function decodeHtmlEntities(str) {
@@ -269,22 +280,6 @@ $(document).ready(function() {
         <td>In development</td>
         <td>CEN European Committee for Standardization</td>
         <td>Geospatial/ Map services | Perception / Sensors</td>
-    </tr>
-    
-    <tr>
-        <td>00278614</td>
-        <td>Electronic Fee Collection - Measurement of interferences on tolling and tachograph devices from wireless local area network devices operating in the 5,8 GHz frequency range - Test suite structure and test purposes</td>
-        <td>In development</td>
-        <td>CEN European Committee for Standardization</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td>01575132</td>
-        <td>The pathway to driverless cars- a Code of practie for testing UK DfT & CCAV</td>
-        <td>Published</td>
-        <td>Department for Transport</td>
-        <td>Engineering and Management</td>
     </tr>
     
     <tr>
@@ -408,7 +403,7 @@ $(document).ready(function() {
     </tr>
     
     <tr>
-        <td>ASAM OSI</td>
+        <td>ASAM OSI </td>
         <td>ASAM Open Simulation Interface</td>
         <td>Published</td>
         <td>Association for Standardization of Automation and Measuring Systems</td>
@@ -436,6 +431,14 @@ $(document).ready(function() {
         <td>Guidelines for the use of the C++14 language in critical and safety-related systems</td>
         <td>Published</td>
         <td>AUTOSAR, Automotive Open System ARchitecture</td>
+        <td>Engineering and Management</td>
+    </tr>
+    
+    <tr>
+        <td>Blank2</td>
+        <td>The pathway to driverless cars- a Code of practie for testing UK DfT & CCAV</td>
+        <td>Published</td>
+        <td>Department for Transport</td>
         <td>Engineering and Management</td>
     </tr>
     
@@ -512,6 +515,14 @@ $(document).ready(function() {
     </tr>
     
     <tr>
+        <td>BS EN 16157-1 </td>
+        <td>Intelligent transport systems -  DATEX II data exchange specifications for traffic management and information. Part 1: Context and framework</td>
+        <td>Published</td>
+        <td>CEN European Committee for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
         <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-esafety-ecall-end-to-end-conformance-testing-2/standard" target="_blank">BS EN 16454:2023</a></td>
         <td>Intelligent transport systems. ESafety. ECall end to end conformance testing</td>
         <td>Published</td>
@@ -541,6 +552,14 @@ $(document).ready(function() {
         <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>BS EN 17905:2023</td>
+        <td>Intelligent transport systems. eSafety. eCall HLAP in hybrid circuit switched/packet switched network environments</td>
+        <td>Published</td>
+        <td>CEN European Committee for Standardization</td>
+        <td>Safety</td>
     </tr>
     
     <tr>
@@ -592,11 +611,11 @@ $(document).ready(function() {
     </tr>
     
     <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/electronic-fee-collection-localization-augmentation-communication-for-autonomous-systems-1/tracked-changes" target="_blank">BS EN ISO 13141:2024</a></td>
-        <td>Electronic fee collection — Localisation augmentation communication for autonomous systems related to ISO/CD 13141 and prEN ISO 13141</td>
-        <td>Published</td>
-        <td>BSI British Standards Institution</td>
-        <td>Communication and Data sharing | Geospatial/ Map services</td>
+        <td>BS EN IEC 63551-1. </td>
+        <td>Semiconductor devices. Detection modules of autonomous land vehicle. Part 1. Testing methods of detection performance for LiDAR</td>
+        <td>In development</td>
+        <td>CEN European Committee for Standardization</td>
+        <td>Perception / Sensors</td>
     </tr>
     
     <tr>
@@ -605,6 +624,14 @@ $(document).ready(function() {
         <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>Communication and Data sharing | Human factors</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://www.iso.org/standard/84170.html" target="_blank">BS EN ISO 15118-21 </a></td>
+        <td>Road vehicles - Vehicle to grid communication interface -nd generation network layer and application layer requirements conformance test plan</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
     </tr>
     
     <tr>
@@ -626,14 +653,6 @@ $(document).ready(function() {
     <tr>
         <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-cooperative-its-roles-and-responsibilities-in-the-context-of-co-operative-its-architectures?version=standard" target="_blank">BS EN ISO 17427-1:2018</a></td>
         <td>Intelligent transport systems — Cooperative ITS — Part 1: Roles and responsibilities in the context of co-operative ITS architecture(s) (ISO 17427-1:2018)</td>
-        <td>Published</td>
-        <td>BSI British Standards Institution</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/electronic-fee-collection-system-architecture-for-vehicle-related-tolling-reference-model/standard" target="_blank">BS EN ISO 17573-1:2019</a></td>
-        <td>Electronic fee collection — System architecture for vehicle-related tolling — Part 3: Data dictionary</td>
         <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>Communication and Data sharing</td>
@@ -693,38 +712,6 @@ $(document).ready(function() {
         <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>Security</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/road-vehicles-symbols-for-controls-indicators-and-tell-tales-3?version=standard" target="_blank">BS ISO 2575:2021</a></td>
-        <td>Road vehicles - Symbols for controls, indicators and tell-tales</td>
-        <td>Published</td>
-        <td>BSI British Standards Institution</td>
-        <td>Human factors</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-truck-platooning-systems-tps-functional-and-operational-requirements/standard" target="_blank">BS ISO 4272:2022</a></td>
-        <td>Intelligent transport systems - Truck platooning systems (TPS) - Functional and operational requirements</td>
-        <td>Published</td>
-        <td>BSI British Standards Institution</td>
-        <td>ADAS/AD functions</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-automated-braking-during-low-speed-manoeuvring-abls-requirements-and-test-procedures/standard" target="_blank">BS ISO 4273:2024</a></td>
-        <td>Intelligent transport systems - Automated braking during low speed manoeuvring (ABLS) - Requirements and test procedures</td>
-        <td>Published</td>
-        <td>BSI British Standards Institution</td>
-        <td>ADAS/AD functions</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/bs-iso-6029-1-intelligent-transport-systems-seamless-positioning-for-multimodal-transportation-in-its-stations-part-1-general-information-and-use-case-definition/standard" target="_blank">BS ISO 6029-1</a></td>
-        <td>Intelligent transport systems — Seamless positioning for multimodal transportation in ITS stations — Part 1: General information and use case definition</td>
-        <td>In development</td>
-        <td>BSI British Standards Institution</td>
-        <td>Geospatial/ Map services</td>
     </tr>
     
     <tr>
@@ -824,15 +811,15 @@ $(document).ready(function() {
     </tr>
     
     <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/bs-iso-14813-1-intelligent-transport-systems-reference-model-architectures-for-the-its-sector-part-1-its-service-domains-service-groups-and-services/standard" target="_blank">BS ISO 14813-1</a></td>
-        <td>Intelligent transport systems. Reference model architecture(s) for the ITS sector. Part 1. ITS service domains, service groups and services</td>
-        <td>In development</td>
-        <td>BSI British Standards Institution</td>
+        <td>BS ISO 14813-1:2024</td>
+        <td>Intelligent transport systems. Reference model architecture(s) for the ITS sector. ITS service domains, service groups and services</td>
+        <td>Published</td>
+        <td>ISO International Organization for Standardization</td>
         <td>Communication and Data sharing</td>
     </tr>
     
     <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-data-interfaces-between-centres-for-transport-information-and-control-systems-ap-datex/tracked-changes" target="_blank">BS ISO 14827-2:2022</a></td>
+        <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-data-interfaces-between-centres-for-transport-information-and-control-systems-ap-datex/tracked-changes" target="_blank">BS ISO 14827-2:2022 </a></td>
         <td>Intelligent transport systems — Data interfaces between centres for transport information and control systems — Part 2: AP DATEX</td>
         <td>Published</td>
         <td>BSI British Standards Institution</td>
@@ -912,14 +899,6 @@ $(document).ready(function() {
     </tr>
     
     <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/bs-iso-15784-2-intelligent-transport-systems-its-data-exchange-involving-roadside-modules-communication-part-2-centre-to-field-device-communications-using-snmp/standard" target="_blank">BS ISO 15784-2</a></td>
-        <td>Intelligent transport systems (ITS). Data exchange involving roadside modules communication. Part 2. Centre to field device communications using SNMP</td>
-        <td>In development</td>
-        <td>BSI British Standards Institution</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
         <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-criteria-for-privacy-and-integrity-protection-in-probe-vehicle-information-systems/standard" target="_blank">BS ISO 16461:2018</a></td>
         <td>Intelligent transport systems — Criteria for privacy and integrity protection in probe vehicle information systems</td>
         <td>Published</td>
@@ -973,6 +952,30 @@ $(document).ready(function() {
         <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>ADAS/AD functions</td>
+    </tr>
+    
+    <tr>
+        <td>BS ISO 17438-2:2024</td>
+        <td>Intelligent transport systems. Indoor navigation for personal and vehicle ITS stations. Requirements and specification for indoor maps</td>
+        <td>Published</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Geospatial/ Map services</td>
+    </tr>
+    
+    <tr>
+        <td>BS ISO 17438-3:2024</td>
+        <td>Intelligent transport systems. Indoor navigation for personal and vehicle ITS stations. Requirements and specification for indoor positioning reference data</td>
+        <td>Published</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Geospatial/ Map services</td>
+    </tr>
+    
+    <tr>
+        <td>BS ISO 17438-5 </td>
+        <td>Intelligent transport systems. Indoor navigation for personal and vehicle ITS stations. Part 5: Requirements and message specification for central ITS station (C-ITS-S) based positioning</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Geospatial/ Map services</td>
     </tr>
     
     <tr>
@@ -1168,22 +1171,6 @@ $(document).ready(function() {
     </tr>
     
     <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/bs-iso-21219-7-intelligent-transport-systems-traffic-and-travel-information-tti-via-transport-protocol-experts-group-generation-2-tpeg2-part-7-location-referencing-container-tpeg2-lrc/standard" target="_blank">BS ISO 21219-7:2023</a></td>
-        <td>Intelligent transport systems — Traffic and travel information (TTI) via transport protocol experts group, generation 2 (TPEG2)— Part 7: Location referencing container (TPEG2-LRC)</td>
-        <td>In development</td>
-        <td>BSI British Standards Institution</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-traffic-and-travel-information-tti-via-transport-protocol-experts-group-generation-2-tpeg2-service-and-network-information-tpeg2-sni-1?version=standard" target="_blank">BS ISO 21219-9:2023</a></td>
-        <td>Intelligent transport systems — Traffic and travel information (TTI) via transport protocol experts group, generation 2 (TPEG2) — Service and network information (TPEG2-SNI)</td>
-        <td>Published</td>
-        <td>BSI British Standards Institution</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
         <td><a href="https://knowledge.bsigroup.com/products/bs-iso-21219-13-intelligent-transport-systems-traffic-and-travel-information-via-transport-protocol-experts-group-generation-2-tpeg2-part-13-public-transport-information-service-tpeg2-pts/standard" target="_blank">BS ISO 21219-13:2023</a></td>
         <td>Intelligent transport systems — Traffic and travel information via transport protocol experts group, generation 2 (TPEG2) — Part 13: Public transport information service (TPEG2-PTS)</td>
         <td>In development</td>
@@ -1235,6 +1222,14 @@ $(document).ready(function() {
         <td><a href="https://knowledge.bsigroup.com/products/bs-iso-21219-25-intelligent-transport-systems-traffic-and-travel-information-tti-via-transport-protocol-experts-group-generation-2-tpeg2-part-25-electromobility-charging-infrastructure-tpeg2-emi/standard" target="_blank">BS ISO 21219-25:2017</a></td>
         <td>Intelligent transport systems — Traffic and travel information (TTI) via transport protocol experts group, generation 2 (TPEG2) — Part 25: Electromobility charging infrastructure (TPEG2-EMI)</td>
         <td>In development</td>
+        <td>BSI British Standards Institution</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-traffic-and-travel-information-tti-via-transport-protocol-experts-group-generation-2-tpeg2-service-and-network-information-tpeg2-sni-1?version=standard" target="_blank">BS ISO 21219-9:2023</a></td>
+        <td>Intelligent transport systems — Traffic and travel information (TTI) via transport protocol experts group, generation 2 (TPEG2) — Service and network information (TPEG2-SNI)</td>
+        <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>Communication and Data sharing</td>
     </tr>
@@ -1360,14 +1355,6 @@ $(document).ready(function() {
     </tr>
     
     <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/bs-iso-23725-autonomous-system-and-fleet-management-system-interoperability/standard" target="_blank">BS ISO 23725</a></td>
-        <td>Autonomous System and Fleet Management System Interoperability</td>
-        <td>In development</td>
-        <td>BSI British Standards Institution</td>
-        <td>Engineering and Management</td>
-    </tr>
-    
-    <tr>
         <td><a href="https://knowledge.bsigroup.com/products/bs-iso-23793-1-intelligent-transport-systems-minimal-risk-maneuver-mrm-for-automated-driving-part-1-framework-straight-stop-and-in-lane-stop/standard" target="_blank">BS ISO 23793-1:2023</a></td>
         <td>Intelligent transport systems — Minimal Risk Maneuver (MRM) for automated driving — Part 1: Framework, straight-stop and in-lane stop related to ISO/AWI 23793-1</td>
         <td>Published</td>
@@ -1408,19 +1395,27 @@ $(document).ready(function() {
     </tr>
     
     <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/bs-iso-24581-road-vehicles-general-requirements-and-test-methods-of-in-vehicle-optical-harnesses-for-up-to-100gbit-s-communication/standard" target="_blank">BS ISO 24581</a></td>
+        <td><a href="https://knowledge.bsigroup.com/products/bs-iso-24581-road-vehicles-general-requirements-and-test-methods-of-in-vehicle-optical-harnesses-for-up-to-100gbit-s-communication/standard" target="_blank">BS ISO 24581:2024</a></td>
         <td>Road vehicles — General requirements and test methods of in-vehicle optical harnesses for up to 100Gbit/s communication</td>
-        <td>In development</td>
+        <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>Communication and Data sharing</td>
     </tr>
     
     <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/bs-iso-24650-road-vehicles-sensors-for-automated-driving-under-adverse-weather-conditions-assessment-of-the-cleaning-system-efficiency/standard" target="_blank">BS ISO 24650</a></td>
+        <td><a href="https://knowledge.bsigroup.com/products/bs-iso-24650-road-vehicles-sensors-for-automated-driving-under-adverse-weather-conditions-assessment-of-the-cleaning-system-efficiency/standard" target="_blank">BS ISO 24650:2024</a></td>
         <td>Road vehicles — Sensors for automated driving under adverse weather conditions — Assessment of the cleaning system efficiency</td>
-        <td>In development</td>
+        <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>Perception / Sensors</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://knowledge.bsigroup.com/products/road-vehicles-symbols-for-controls-indicators-and-tell-tales-3?version=standard" target="_blank">BS ISO 2575:2021</a></td>
+        <td>Road vehicles - Symbols for controls, indicators and tell-tales</td>
+        <td>Published</td>
+        <td>BSI British Standards Institution</td>
+        <td>Human factors</td>
     </tr>
     
     <tr>
@@ -1429,6 +1424,14 @@ $(document).ready(function() {
         <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>Engineering and Management | Safety | Terminology</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://knowledge.bsigroup.com/products/road-vehicles-functional-safety-guidelines-on-iso-26262?version=standard" target="_blank">BS ISO 26262-10</a></td>
+        <td>Road vehicles – Functional safety – Part 10: Guidelines on ISO 26262</td>
+        <td>Published</td>
+        <td>BSI British Standards Institution</td>
+        <td>Engineering and Management | Safety</td>
     </tr>
     
     <tr>
@@ -1482,14 +1485,6 @@ $(document).ready(function() {
     <tr>
         <td><a href="https://knowledge.bsigroup.com/products/road-vehicles-functional-safety-automotive-safety-integrity-level-asil-oriented-and-safety-oriented-analyses?version=standard" target="_blank">BS ISO 26262-9</a></td>
         <td>Road vehicles - Functional safety - Part 9: Automotive Safety Integrity Level (ASIL)-oriented and safety-oriented analyses</td>
-        <td>Published</td>
-        <td>BSI British Standards Institution</td>
-        <td>Engineering and Management | Safety</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/road-vehicles-functional-safety-guidelines-on-iso-26262?version=standard" target="_blank">BS ISO 26262-10</a></td>
-        <td>Road vehicles – Functional safety – Part 10: Guidelines on ISO 26262</td>
         <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>Engineering and Management | Safety</td>
@@ -1552,6 +1547,14 @@ $(document).ready(function() {
     </tr>
     
     <tr>
+        <td>BS ISO 34505 </td>
+        <td>Road vehicles -  Test scenarios for automated driving systems -  Scenario evaluation and test case generation</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Simulation</td>
+    </tr>
+    
+    <tr>
         <td><a href="https://knowledge.bsigroup.com/products/smart-community-infrastructures-smart-transportation-by-autonomous-vehicles-on-public-roads/standard" target="_blank">BS ISO 37181:2022</a></td>
         <td>Smart community infrastructures - Smart transportation by autonomous vehicle on public roads</td>
         <td>Published</td>
@@ -1581,6 +1584,22 @@ $(document).ready(function() {
         <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-truck-platooning-systems-tps-functional-and-operational-requirements/standard" target="_blank">BS ISO 4272:2022</a></td>
+        <td>Intelligent transport systems - Truck platooning systems (TPS) - Functional and operational requirements</td>
+        <td>Published</td>
+        <td>BSI British Standards Institution</td>
+        <td>ADAS/AD functions</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-automated-braking-during-low-speed-manoeuvring-abls-requirements-and-test-procedures/standard" target="_blank">BS ISO 4273:2024</a></td>
+        <td>Intelligent transport systems - Automated braking during low speed manoeuvring (ABLS) - Requirements and test procedures</td>
+        <td>Published</td>
+        <td>BSI British Standards Institution</td>
+        <td>ADAS/AD functions</td>
     </tr>
     
     <tr>
@@ -1672,6 +1691,14 @@ $(document).ready(function() {
     </tr>
     
     <tr>
+        <td>BS PD CEN 17249-5</td>
+        <td> Intelligent transport systems -  eSafety. Part 5: eCall for UNECE category L1 and L3 Powered Two-Wheeled Vehicles</td>
+        <td>Published</td>
+        <td>CEN European Committee for Standardization</td>
+        <td>Safety</td>
+    </tr>
+    
+    <tr>
         <td><a href="https://knowledge.bsigroup.com/products/system-aspects-for-remote-operation-of-vehicles-guide?version=standard&tab=overview" target="_blank">BSI Flex 1886 v1.0 2023-08</a></td>
         <td>System aspects for remote operation of vehicles guide</td>
         <td>Published</td>
@@ -1680,8 +1707,16 @@ $(document).ready(function() {
     </tr>
     
     <tr>
+        <td>BSI Flex 1887 v2:2025-01</td>
+        <td>Human factors for remote operation of vehicles. Guide</td>
+        <td>Published</td>
+        <td>BSI British Standards Institution</td>
+        <td>Human factors</td>
+    </tr>
+    
+    <tr>
         <td><a href="https://knowledge.bsigroup.com/products/formalised-natural-language-description-of-scenarios-for-automated-driving-systems-specification?version=standard" target="_blank">BSI Flex 1889 v2.0 2023-09</a></td>
-        <td>Natural language description for automated driving systems</td>
+        <td>Natural language description for automated driving systems </td>
         <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>Safety | Simulation</td>
@@ -1720,7 +1755,7 @@ $(document).ready(function() {
     </tr>
     
     <tr>
-        <td>DD CEN/TS 15504:2007</td>
+        <td><a href="https://www.en-standard.eu/dd-cen-ts-15504-2007-public-transport-road-vehicles-visible-variable-passenger-information-devices-inside-the-vehicle/" target="_blank">DD CEN/TS 15504:2007</a></td>
         <td>Public transport - Road vehicles - Visible variable passenger information devices inside the vehicle</td>
         <td>Published</td>
         <td>CEN European Committee for Standardization</td>
@@ -1737,7 +1772,7 @@ $(document).ready(function() {
     
     <tr>
         <td>DIN 70065</td>
-        <td>Road vehicles - Requirements for a "Steer-by-Wire (SbW)-system"</td>
+        <td>Road vehicles - Requirements for a "Steer-by-Wire (SbW)-system"  </td>
         <td>In development</td>
         <td>DIN German Institute for Standardization</td>
         <td>Safety</td>
@@ -1808,8 +1843,8 @@ $(document).ready(function() {
     </tr>
     
     <tr>
-        <td>EN ISO 15118-202022/prA1</td>
-        <td>Road vehicles - Vehicle to grid communication interface - Part 20 2nd generation network layer and application layer requirements - Amendment 1</td>
+        <td>EN ISO 15118-20:2022/prA1</td>
+        <td>Road vehicles - Vehicle to grid communication interface - Part 20 2nd generation network layer and application layer requirements - Amendment 1 </td>
         <td>In development</td>
         <td>CEN European Committee for Standardization</td>
         <td>Communication and Data sharing</td>
@@ -1864,7 +1899,7 @@ $(document).ready(function() {
     </tr>
     
     <tr>
-        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=55979" target="_blank">ETSI EN 302 637-3 V1.3.1</a></td>
+        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=55979" target="_blank">ETSI EN 302 637-3 V1.3.1 </a></td>
         <td>Intelligent Transport Systems (ITS); Vehicular Communications; Basic Set of Applications; Part 3: Specifications of Decentralized Environmental Notification Basic Service</td>
         <td>Published</td>
         <td>ETSI European Telecommunications Standards Institute</td>
@@ -1873,7 +1908,7 @@ $(document).ready(function() {
     
     <tr>
         <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=51379" target="_blank">ETSI EN 302 890-2</a></td>
-        <td>Intelligent Transport Systems (ITS); Facilities Layer function; Part 2: Position and Time management (PoTi); Release 2</td>
+        <td>Intelligent Transport Systems (ITS); Facilities Layer function; Part 2: Position and Time management (PoTi); Release 2 </td>
         <td>Published</td>
         <td>ETSI European Telecommunications Standards Institute</td>
         <td>Geospatial/ Map services</td>
@@ -1905,7 +1940,7 @@ $(document).ready(function() {
     
     <tr>
         <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=53595" target="_blank">ETSI GS MEC 013 V2.1.1</a></td>
-        <td>Multi-access Edge Computing (MEC);  Location API</td>
+        <td>Multi-access Edge Computing (MEC);  Location API </td>
         <td>Published</td>
         <td>ETSI European Telecommunications Standards Institute</td>
         <td>Geospatial/ Map services</td>
@@ -1913,7 +1948,7 @@ $(document).ready(function() {
     
     <tr>
         <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=54416" target="_blank">ETSI GS MEC 030 V2.1.1</a></td>
-        <td>Multi-access Edge Computing (MEC); V2X Information Service API</td>
+        <td>Multi-access Edge Computing (MEC); V2X Information Service API </td>
         <td>Published</td>
         <td>ETSI European Telecommunications Standards Institute</td>
         <td>Communication and Data sharing</td>
@@ -1924,26 +1959,10 @@ $(document).ready(function() {
         <td>Intelligent Transport Systems (ITS);
 V2X Applications;
 Part 1: Road Hazard Signalling (RHS)
-application requirements specification</td>
+application requirements specification </td>
         <td>Published</td>
         <td>ETSI European Telecommunications Standards Institute</td>
         <td>ADAS/AD functions</td>
-    </tr>
-    
-    <tr>
-        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=61954" target="_blank">ETSI TR 103 300-1 V 2.2.1</a></td>
-        <td>Intelligent Transport System (ITS) - Vulnerable Road Users (VRU) awareness - Part 1: Use Cases definition - Release 2</td>
-        <td>Published</td>
-        <td>ETSI European Telecommunications Standards Institute</td>
-        <td>Human factors | Safety</td>
-    </tr>
-    
-    <tr>
-        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=50249" target="_blank">ETSI TR 103 460</a></td>
-        <td>Intelligent Transport Systems (ITS); Security; Pre-standardization study on Misbehaviour Detection; Release 2</td>
-        <td>Published</td>
-        <td>ETSI European Telecommunications Standards Institute</td>
-        <td>Safety | Security</td>
     </tr>
     
     <tr>
@@ -1971,8 +1990,24 @@ application requirements specification</td>
     </tr>
     
     <tr>
+        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=61954" target="_blank">ETSI TR 103 300-1 V 2.2.1</a></td>
+        <td>Intelligent Transport System (ITS) - Vulnerable Road Users (VRU) awareness - Part 1: Use Cases definition - Release 2</td>
+        <td>Published</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Human factors | Safety</td>
+    </tr>
+    
+    <tr>
+        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=50249" target="_blank">ETSI TR 103 460</a></td>
+        <td>Intelligent Transport Systems (ITS); Security; Pre-standardization study on Misbehaviour Detection; Release 2 </td>
+        <td>Published</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Safety | Security</td>
+    </tr>
+    
+    <tr>
         <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=35192" target="_blank">ETSI TS 101 539-2</a></td>
-        <td>Intelligent Transport Systems (ITS); V2X Applications; Part 2: Intersection Collision Risk Warning (ICRW) application requirements specification</td>
+        <td>Intelligent Transport Systems (ITS); V2X Applications; Part 2: Intersection Collision Risk Warning (ICRW) application requirements specification </td>
         <td>Published</td>
         <td>ETSI European Telecommunications Standards Institute</td>
         <td>ADAS/AD functions</td>
@@ -1984,30 +2019,6 @@ application requirements specification</td>
         <td>Published</td>
         <td>ETSI European Telecommunications Standards Institute</td>
         <td>Security</td>
-    </tr>
-    
-    <tr>
-        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=59265" target="_blank">ETSI TS 103 097 V1.4.1</a></td>
-        <td>Intelligent Transport Systems (ITS); Security; Security header and certificate formats</td>
-        <td>Published</td>
-        <td>ETSI European Telecommunications Standards Institute</td>
-        <td>Security</td>
-    </tr>
-    
-    <tr>
-        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=58911" target="_blank">ETSI TS 103 246-1</a></td>
-        <td>Satellite Earth Stations and Systems (SES); GNSS based location systems; Part 1: Functional requirements</td>
-        <td>Published</td>
-        <td>ETSI European Telecommunications Standards Institute</td>
-        <td>Geospatial/ Map services</td>
-    </tr>
-    
-    <tr>
-        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=61955" target="_blank">ETSI TS 103 300-2 V2.2.1</a></td>
-        <td>Intelligent Transport Systems (ITS); Vulnerable Road Users (VRU) awareness;  Part 2: Functional Architecture and Requirements definition;  Release 2</td>
-        <td>Published</td>
-        <td>ETSI European Telecommunications Standards Institute</td>
-        <td>Human factors | Safety</td>
     </tr>
     
     <tr>
@@ -2067,6 +2078,62 @@ application requirements specification</td>
     </tr>
     
     <tr>
+        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=59265" target="_blank">ETSI TS 103 097 V1.4.1</a></td>
+        <td>Intelligent Transport Systems (ITS); Security; Security header and certificate formats</td>
+        <td>Published</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Security</td>
+    </tr>
+    
+    <tr>
+        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=58911" target="_blank">ETSI TS 103 246-1</a></td>
+        <td>Satellite Earth Stations and Systems (SES); GNSS based location systems; Part 1: Functional requirements </td>
+        <td>Published</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Geospatial/ Map services</td>
+    </tr>
+    
+    <tr>
+        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=61955" target="_blank">ETSI TS 103 300-2 V2.2.1     </a></td>
+        <td>Intelligent Transport Systems (ITS); Vulnerable Road Users (VRU) awareness;  Part 2: Functional Architecture and Requirements definition;  Release 2 </td>
+        <td>Published</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Human factors | Safety</td>
+    </tr>
+    
+    <tr>
+        <td>ETSI TS 103096-1 V 2.1.1</td>
+        <td>Intelligent Transport Systems (ITS) -  Testing -  Conformance test specifications for ITS Security -  Part 1: Protocol Implementation Conformance Statement (PICS) -  Release 2</td>
+        <td>Published</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td>ETSI TS 103096-2 V 2.1.1</td>
+        <td>Intelligent Transport Systems (ITS) -  Testing -  Conformance test specifications for ITS Security -  Part 2: Test Suite Structure and Test Purposes (TSS & TP) -  Release 2</td>
+        <td>Published</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td>ETSI TS 103096-3 V 2.1.1</td>
+        <td>Intelligent Transport Systems (ITS) -  Testing -  Conformance test specifications for ITS Security -  Part 3: Abstract Test Suite (ATS) and Protocol Implementation eXtra Information for Testing (PIXIT) -  Release 2</td>
+        <td>Published</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td>ETSI TS 103300-2 V 2.3.1</td>
+        <td>Intelligent Transport Systems (ITS) -  Vulnerable Road Users (VRU) awareness -  Part 2: Functional Architecture and Requirements definition -  Release 2</td>
+        <td>Published</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>ADAS/AD functions | Human factors</td>
+    </tr>
+    
+    <tr>
         <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=66956" target="_blank">ETSI TS 103300-3 V 2.2.1</a></td>
         <td>Intelligent Transport Systems (ITS) - Vulnerable Road Users (VRU) awareness - Part 3: Specification of VRU awareness basic service - Release 2</td>
         <td>Published</td>
@@ -2083,11 +2150,27 @@ application requirements specification</td>
     </tr>
     
     <tr>
+        <td>ETSI TS 103601 V 2.1.1</td>
+        <td>Intelligent Transport Systems (ITS) -  Security -  Security management messages communication requirements and distribution protocols -  Release 2</td>
+        <td>Published</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Communication and Data sharing | Safety</td>
+    </tr>
+    
+    <tr>
         <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=59560" target="_blank">ETSI TS 103759 V 2.1.1</a></td>
         <td>Intelligent Transport Systems (ITS) - Security - Misbehaviour Reporting service - Release 2</td>
         <td>Published</td>
         <td>ETSI European Telecommunications Standards Institute</td>
         <td>Human factors | Safety | Security</td>
+    </tr>
+    
+    <tr>
+        <td>ETSI TS 103882 V 2.1.1</td>
+        <td>Intelligent Transport Systems (ITS) -  Automated Vehicle Marshalling (AVM) -  Release 2</td>
+        <td>Published</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>ADAS/AD functions</td>
     </tr>
     
     <tr>
@@ -2107,43 +2190,59 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=67582" target="_blank">ETSI TS 124486 V 17.5.0*3GPP TS 24.486 Version 17.5.0 Release 17</a></td>
-        <td>LTE - 5G - Vehicle-to-Everything (V2X) Application Enabler (VAE) layer - Protocol aspects - Stage 3 (3GPP TS 24.486 version 17.5.0 Release 17)</td>
+        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=67582" target="_blank">ETSI TS 123287 V 18.4.0*3GPP TS 23.287 Version 18.4.0 Release 18</a></td>
+        <td>5G -  Architecture enhancements for 5G System (5GS) to support Vehicle-to-Everything (V2X) services (3GPP TS 23.287 version 18.4.0 Release 18)</td>
         <td>Published</td>
         <td>ETSI European Telecommunications Standards Institute</td>
         <td>Communication and Data sharing</td>
     </tr>
     
     <tr>
-        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=67589" target="_blank">ETSI TS 124587 V 17.8.0*3GPP TS 24.587 Version 17.8.0 Release 17</a></td>
-        <td>5G - Vehicle-to-Everything (V2X) services in 5G System (5GS) - Stage 3 (3GPP TS 24.587 version 17.8.0 Release 17)</td>
+        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=67589" target="_blank">ETSI TS 124587 V 18.7.0*3GPP TS 24.587 Version 18.7.0 Release 18</a></td>
+        <td>5G -  Vehicle-to-Everything (V2X) services in 5G System (5GS) -  Stage 3 (3GPP TS 24.587 version 18.7.0 Release 18)</td>
         <td>Published</td>
         <td>ETSI European Telecommunications Standards Institute</td>
         <td>Communication and Data sharing</td>
     </tr>
     
     <tr>
-        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=67588" target="_blank">ETSI TS 124588 V 17.2.0*3GPP TS 24.588 Version 17.2.0 Release 17</a></td>
-        <td>5G - Vehicle-to-Everything (V2X) services in 5G System (5GS) - User Equipment (UE) policies - Stage 3 (3GPP TS 24.588 version 17.2.0 Release 17)</td>
+        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=67588" target="_blank">ETSI TS 124588 V 18.2.0*3GPP TS 24.588 Version 18.2.0 Release 18</a></td>
+        <td>5G -  Vehicle-to-Everything (V2X) services in 5G System (5GS) -  User Equipment (UE) policies -  Stage 3 (3GPP TS 24.588 version 18.2.0 Release 18)</td>
         <td>Published</td>
         <td>ETSI European Telecommunications Standards Institute</td>
         <td>Communication and Data sharing</td>
     </tr>
     
     <tr>
-        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=60373" target="_blank">ETSI TS 133185 V 15.0.0*3GPP TS 33.185 Version 16.0.0 Release 16</a></td>
-        <td>LTE - 5G - Security aspect for LTE support of Vehicle-to-Everything (V2X) services (3GPP TS 33.185 version 16.0.0 Release 16)</td>
+        <td><a href="http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=60373" target="_blank">ETSI TS 133185 V 18.0.0*3GPP TS 33.185 Version 18.0.0 Release 18</a></td>
+        <td>LTE -  5G -  Security aspect for LTE support of Vehicle-to-Everything (V2X) services (3GPP TS 33.185 version 18.0.0 Release 18)</td>
         <td>Published</td>
         <td>ETSI European Telecommunications Standards Institute</td>
         <td>Communication and Data sharing</td>
     </tr>
     
     <tr>
-        <td>FprCEN/TS 16157-11 (WI=00278558)</td>
-        <td>Intelligent transport systems - DATEX II data exchange specifications for traffic management and information - Part 11: Publication of machine interpretable traffic regulations</td>
+        <td>FprCEN/TS 13149-8</td>
+        <td>Public transport -  Road vehicle scheduling and control systems -  Part 8: Physical layer for IP communication</td>
+        <td>In development</td>
+        <td>CEN European Committee for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>FprCEN/TS 16157-13</td>
+        <td>Intelligent transport systems -  DATEX II data exchange specifications for traffic management and information -  Part 13: Status, fault and quality requirements</td>
         <td>Published</td>
         <td>CEN European Committee for Standardization</td>
-        <td>Communication and Data sharing | Geospatial/ Map services</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>FprCEN/TS 17118</td>
+        <td>Intelligent transport systems - Public transport - Open API for distributed journey planning</td>
+        <td>Published</td>
+        <td>CEN European Committee for Standardization</td>
+        <td>Communication and Data sharing | Geospatial/ Map services | Human factors</td>
     </tr>
     
     <tr>
@@ -2157,14 +2256,6 @@ application requirements specification</td>
     <tr>
         <td>GB 305-2</td>
         <td>Requirements and evaluation methods for Autopilot recording device</td>
-        <td>Published</td>
-        <td>SAC Standardization Administration of the People's Republic of China</td>
-        <td>ADAS/AD functions</td>
-    </tr>
-    
-    <tr>
-        <td>GB/T 24</td>
-        <td>Performance requirements and test methods for traffic jam assist control system</td>
         <td>Published</td>
         <td>SAC Standardization Administration of the People's Republic of China</td>
         <td>ADAS/AD functions</td>
@@ -2192,6 +2283,38 @@ application requirements specification</td>
         <td>Published</td>
         <td>SAC Standardization Administration of the People's Republic of China</td>
         <td>Engineering and Management | Safety</td>
+    </tr>
+    
+    <tr>
+        <td>GB/T 204-11</td>
+        <td>Technical requirements for information security of onboard diagnostic interface (OBD)</td>
+        <td>Published</td>
+        <td>SAC Standardization Administration of the People's Republic of China</td>
+        <td>Security</td>
+    </tr>
+    
+    <tr>
+        <td>GB/T 204-13</td>
+        <td>Specification for security protection of vehicle software upgrading</td>
+        <td>Published</td>
+        <td>SAC Standardization Administration of the People's Republic of China</td>
+        <td>Security</td>
+    </tr>
+    
+    <tr>
+        <td>GB/T 204-14</td>
+        <td>Technical requirements for information security of electric vehicle telematics service and management system</td>
+        <td>Published</td>
+        <td>SAC Standardization Administration of the People's Republic of China</td>
+        <td>Security</td>
+    </tr>
+    
+    <tr>
+        <td>GB/T 204-16</td>
+        <td>Guidance for automotive information security emergency response</td>
+        <td>Published</td>
+        <td>SAC Standardization Administration of the People's Republic of China</td>
+        <td>Safety | Security</td>
     </tr>
     
     <tr>
@@ -2227,35 +2350,19 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>GB/T 204-11</td>
-        <td>Technical requirements for information security of onboard diagnostic interface (OBD)</td>
+        <td>GB/T 24</td>
+        <td>Performance requirements and test methods for traffic jam assist control system</td>
         <td>Published</td>
         <td>SAC Standardization Administration of the People's Republic of China</td>
-        <td>Security</td>
+        <td>ADAS/AD functions</td>
     </tr>
     
     <tr>
-        <td>GB/T 204-13</td>
-        <td>Specification for security protection of vehicle software upgrading</td>
+        <td>GB/T 26773</td>
+        <td>Intelligent transport systems - Lane departure warning systems - Performance requirements and test procedures</td>
         <td>Published</td>
         <td>SAC Standardization Administration of the People's Republic of China</td>
-        <td>Security</td>
-    </tr>
-    
-    <tr>
-        <td>GB/T 204-14</td>
-        <td>Technical requirements for information security of electric vehicle telematics service and management system</td>
-        <td>Published</td>
-        <td>SAC Standardization Administration of the People's Republic of China</td>
-        <td>Security</td>
-    </tr>
-    
-    <tr>
-        <td>GB/T 204-16</td>
-        <td>Guidance for automotive information security emergency response</td>
-        <td>Published</td>
-        <td>SAC Standardization Administration of the People's Republic of China</td>
-        <td>Safety | Security</td>
+        <td>ADAS/AD functions</td>
     </tr>
     
     <tr>
@@ -2299,14 +2406,6 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>GB/T 26773</td>
-        <td>Intelligent transport systems - Lane departure warning systems - Performance requirements and test procedures</td>
-        <td>Published</td>
-        <td>SAC Standardization Administration of the People's Republic of China</td>
-        <td>ADAS/AD functions</td>
-    </tr>
-    
-    <tr>
         <td>GB/T 34590.1</td>
         <td>Road vehicles -Functional safety -Part 1: Vocabulary</td>
         <td>Published</td>
@@ -2336,6 +2435,62 @@ application requirements specification</td>
         <td>Published</td>
         <td>SAC Standardization Administration of the People's Republic of China</td>
         <td>ADAS/AD functions | Terminology</td>
+    </tr>
+    
+    <tr>
+        <td>GB/T 43758.1</td>
+        <td>Technical specifications for driving safety test environment for intelligent and connected vehicles -  Part 1: Public road</td>
+        <td>Published</td>
+        <td>Standardization Administration of the People's Republic of China (SAC)</td>
+        <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td>GB/T 43766</td>
+        <td>Technical requirements for driving safety test for intelligent and connected vehicles</td>
+        <td>Published</td>
+        <td>Standardization Administration of the People's Republic of China (SAC)</td>
+        <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td>GB/T 44176</td>
+        <td>Performance requirements and testing methods for around view monitoring system of vehicles</td>
+        <td>Published</td>
+        <td>Standardization Administration of the People's Republic of China (SAC)</td>
+        <td>Perception / Sensors</td>
+    </tr>
+    
+    <tr>
+        <td>GB/T 44298</td>
+        <td>Intelligent and connected vehicles -  Symbols for controls, indicators and tell-tales</td>
+        <td>Published</td>
+        <td>Standardization Administration of the People's Republic of China (SAC)</td>
+        <td>Human factors</td>
+    </tr>
+    
+    <tr>
+        <td>GB/T 44461.1</td>
+        <td>Intelligent and connected vehicle -  Technical requirements and testing methods for combined driver assistance system -  Part 1: Single-lane manoeuvre</td>
+        <td>Published</td>
+        <td>Standardization Administration of the People's Republic of China (SAC)</td>
+        <td>ADAS/AD functions</td>
+    </tr>
+    
+    <tr>
+        <td>GB/T 44461.2</td>
+        <td>Intelligent and connected vehicle -  Technical requirements and testing methods for combined driver assistance system -  Part 2: Multi-lane maneuvre</td>
+        <td>Published</td>
+        <td>Standardization Administration of the People's Republic of China (SAC)</td>
+        <td>ADAS/AD functions</td>
+    </tr>
+    
+    <tr>
+        <td>GB/T 44719</td>
+        <td>Intelligent and connected vehicle -  Methods and requirements of road test for automated driving functions</td>
+        <td>Published</td>
+        <td>Standardization Administration of the People's Republic of China (SAC)</td>
+        <td>ADAS/AD functions</td>
     </tr>
     
     <tr>
@@ -2371,25 +2526,33 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>IEEE 1609.2b</td>
-        <td>IEEE standard for wireless access to vehicular environment</td>
-        <td>Published</td>
+        <td>IEEE 1455-1999</td>
+        <td>IEEE Standard for Message Sets for Vehicle/Roadside Communications</td>
+        <td>In development</td>
         <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
         <td>Communication and Data sharing</td>
     </tr>
     
     <tr>
-        <td>IEEE 1609.3</td>
-        <td>IEEE Standard for Wireless Access in Vehicular Environments (WAVE) - Networking Services</td>
-        <td>Published</td>
+        <td>IEEE 1512.1-2006</td>
+        <td>IEEE Standard for Common Traffic Incident Management Message Sets for Use by Emergency Management Centers</td>
+        <td>In development</td>
         <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
-        <td>Communication and Data sharing</td>
+        <td>Safety</td>
     </tr>
     
     <tr>
-        <td>IEEE 1609.4</td>
-        <td>IEEE Standard for Wireless Access in Vehicular Environments (WAVE) -- Multi-Channel Operation</td>
-        <td>Published</td>
+        <td>IEEE 1512-2006</td>
+        <td>IEEE Standard for Common Incident Management Message Sets for Use by Emergency Management Centers</td>
+        <td>In development</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td>IEEE 1609.0-2013</td>
+        <td>IEEE Guide for Wireless Access in Vehicular Environments (WAVE) -  Architecture</td>
+        <td>In development</td>
         <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
         <td>Communication and Data sharing</td>
     </tr>
@@ -2398,6 +2561,86 @@ application requirements specification</td>
         <td>IEEE 1609.12</td>
         <td>IEEE Standard for Wireless Access in Vehicular Environments (WAVE) - Identifier Allocations</td>
         <td>Published</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>IEEE 1609.2.1-2022</td>
+        <td>IEEE Standard for Wireless Access in Vehicular Environments (WAVE) -  Certificate Management Interfaces for End Entities</td>
+        <td>In development</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>IEEE 1609.2-2022</td>
+        <td>IEEE Standard for Wireless Access in Vehicular Environments- Security Services for Application and Management Messages</td>
+        <td>In development</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>IEEE 1609.2b</td>
+        <td>IEEE standard for wireless access to vehicular environment</td>
+        <td>Published</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>IEEE 1609.3-2020</td>
+        <td>IEEE Standard for Wireless Access in Vehicular Environments (WAVE) - Networking Services</td>
+        <td>Published</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>IEEE 1609.4-2016</td>
+        <td>IEEE Standard for Wireless Access in Vehicular Environments (WAVE) -- Multi-Channel Operation</td>
+        <td>Published</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>IEEE 1616.1-2023</td>
+        <td>IEEE Standard for Data Storage Systems for Automated Driving</td>
+        <td>In development</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>Engineering and Management</td>
+    </tr>
+    
+    <tr>
+        <td>IEEE 1616-2021</td>
+        <td>IEEE Standard for Motor Vehicle Event Data Recorder (MVEDR)</td>
+        <td>In development</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td>IEEE 3130-2024</td>
+        <td>IEEE Standard for Security Requirements and Testing Methods of Operating Systems in Connected Vehicles</td>
+        <td>In development</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>Security</td>
+    </tr>
+    
+    <tr>
+        <td>IEEE 3321-2024</td>
+        <td>IEEE Approved Draft Recommended Practice for Application of Assumptions on Foreseeable Behavior of Road Users</td>
+        <td>In development</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>Human factors | Simulation</td>
+    </tr>
+    
+    <tr>
+        <td>IEEE 802.11bd-2022</td>
+        <td>IEEE Standard for Enhancements for Next Generation V2X</td>
+        <td>In development</td>
         <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
         <td>Communication and Data sharing</td>
     </tr>
@@ -2427,16 +2670,32 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/16737.html" target="_blank">ISO 9141:1989</a></td>
-        <td>Road vehicles - Diagnostic systems - Requirements for interchange of digital information</td>
+        <td>ISO 11010-2</td>
+        <td>Passenger Cars - Simulation model classification -  Part 2: Perception sensor models for ADAS /AD</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>ADAS/AD functions | Perception / Sensors | Simulation</td>
+    </tr>
+    
+    <tr>
+        <td>ISO 11010-3</td>
+        <td>Passenger Cars -  Simulation model classification -  Part 3: Generation process of tyre model parameter sets</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Simulation</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://www.iso.org/standard/82932.html" target="_blank">ISO 12813:2024</a></td>
+        <td>Electronic fee collection — Compliance check communication for autonomous systems — Amendment 2 related to ISO/CD 12813 and prEN ISO 12813</td>
         <td>Published</td>
         <td>ISO International Organization for Standardization</td>
         <td>Communication and Data sharing</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/82932.html" target="_blank">ISO 12813:2024</a></td>
-        <td>Electronic fee collection — Compliance check communication for autonomous systems — Amendment 2 related to ISO/CD 12813 and prEN ISO 12813</td>
+        <td>ISO 13209-4</td>
+        <td>Road vehicles -  Open Test sequence eXchange format (OTX) -  Part 4: Expanded extensions interface definition</td>
         <td>Published</td>
         <td>ISO International Organization for Standardization</td>
         <td>Communication and Data sharing</td>
@@ -2451,7 +2710,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/84207.html" target="_blank">ISO 15118-2 ED2</a></td>
+        <td><a href="https://www.iso.org/standard/84207.html" target="_blank">ISO 15118-2</a></td>
         <td>Road vehicles -- Vehicle-to-Grid Communication Interface -- Part 2: Network and application protocol requirements</td>
         <td>Published</td>
         <td>ISO International Organization for Standardization</td>
@@ -2459,8 +2718,32 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/88767.html" target="_blank">ISO 15118-4 ED2</a></td>
-        <td>Road vehicles - Vehicle to grid communication interface - Part 4 Network and application protocol conformance test</td>
+        <td>ISO 15784-2</td>
+        <td>Intelligent transport systems -  Data exchange involving roadside modules communication -  Part 2: Centre to field device communications using Simple Network Management Protocol (SNMP)</td>
+        <td>Published</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>ISO 16505:2019</td>
+        <td>Road vehicles -  Ergonomic and performance aspects of Camera Monitor Systems -  Requirements and test procedures</td>
+        <td>Published</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>ADAS/AD functions | Perception / Sensors</td>
+    </tr>
+    
+    <tr>
+        <td>ISO 21111-12</td>
+        <td>Road vehicles -  In-vehicle Ethernet -  Part 12: Electrical 1000-Mbit/s Ethernet transmission media, channel, assemblies and tests1000BASE-T1, UTP and STP class 1</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>ISO 21111-13</td>
+        <td>Road vehicles -  In-vehicle Ethernet -  Part 13: Electrical 1/2,5/5/10 Gbit/s Ethernet transmission media, channel, assemblies and tests1000BASE-T1, STP class 2 and 2.5G/5G/10GBASE-T1</td>
         <td>In development</td>
         <td>ISO International Organization for Standardization</td>
         <td>Communication and Data sharing</td>
@@ -2475,6 +2758,14 @@ application requirements specification</td>
     </tr>
     
     <tr>
+        <td>ISO 21219-7</td>
+        <td>Intelligent transport systems -  Traffic and travel information (TTI) via transport protocol experts group, generation 2 (TPEG2) -  Part 7: Location referencing container (TPEG2-LRC)</td>
+        <td>Published</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
         <td><a href="https://www.iso.org/standard/84241.html" target="_blank">ISO 22733-1:2022</a></td>
         <td>Test method to evaluate the performance of autonomous emergency braking systems — Part 1: Car-to-car</td>
         <td>Published</td>
@@ -2483,27 +2774,27 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/86344.html" target="_blank">ISO/AWI 1979-3</a></td>
-        <td>Road vehicles - On-board diagnostic communication - Zero emissions propulsion systems</td>
-        <td>New Project</td>
+        <td><a href="https://knowledge.bsigroup.com/products/bs-iso-23725-autonomous-system-and-fleet-management-system-interoperability/standard" target="_blank">ISO 23725</a></td>
+        <td>Autonomous System and Fleet Management System Interoperability</td>
+        <td>Published</td>
+        <td>BSI British Standards Institution</td>
+        <td>Engineering and Management</td>
+    </tr>
+    
+    <tr>
+        <td>ISO 26262-8</td>
+        <td>ISO  26262-8 Road vehicles -  Functional safety -  Part 8: Supporting processes</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Engineering and Management | Safety</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://www.iso.org/standard/16737.html" target="_blank">ISO 9141:1989</a></td>
+        <td>Road vehicles - Diagnostic systems - Requirements for interchange of digital information</td>
+        <td>Published</td>
         <td>ISO International Organization for Standardization</td>
         <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://www.iso.org/standard/85047.html" target="_blank">ISO/AWI 6029-2</a></td>
-        <td>Intelligent transport systems - Seamless positioning for multimodal transportation in ITS stations - Nomadic and mobile device dataset for positioning data fusion</td>
-        <td>New Project</td>
-        <td>ISO International Organization for Standardization</td>
-        <td>Geospatial/ Map services</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://www.iso.org/standard/88471.html" target="_blank">ISO/AWI 6487</a></td>
-        <td>Road vehicles - Measurement techniques in impact tests - Instrumentation</td>
-        <td>New Project</td>
-        <td>ISO International Organization for Standardization</td>
-        <td>Safety</td>
     </tr>
     
     <tr>
@@ -2523,43 +2814,27 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/88211.html" target="_blank">ISO/AWI 12855</a></td>
-        <td>Electronic fee collection - Information exchange between service provision and toll charging</td>
-        <td>New Project</td>
+        <td>ISO/AWI 13228</td>
+        <td>Road vehicles -  Test method for automotive LiDAR</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Perception / Sensors</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/AWI 13389</td>
+        <td>Road vehicles -  Test method for detection performance of exterior sensing millimeter-wave radar</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Perception / Sensors</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/AWI 14827-3</td>
+        <td>Transport information and control systems -  Data interfaces between centres for transport information and control systems -  Part 3: Data interfaces between centres for intelligent transport sytems (ITS) using XML (Profile A)</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
         <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://www.iso.org/standard/87049.html" target="_blank">ISO/AWI 13140</a></td>
-        <td>Electronic fee collection - Conformity evaluation of on-</td>
-        <td>New Project</td>
-        <td>ISO International Organization for Standardization</td>
-        <td>Safety</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://www.iso.org/standard/88212.html" target="_blank">ISO/AWI 16785</a></td>
-        <td>Electronic Fee Collection (EFC) - Application interface definition between DSRC-OBE and external in-vehicle devices</td>
-        <td>New Project</td>
-        <td>ISO International Organization for Standardization</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://www.iso.org/standard/88222.html" target="_blank">ISO/AWI 17387</a></td>
-        <td>Intelligent transport systems - Lane change decision aid systems (LCDAS) - Performance requirements and test procedures</td>
-        <td>New Project</td>
-        <td>ISO International Organization for Standardization</td>
-        <td>ADAS/AD functions</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://www.iso.org/standard/88231.html" target="_blank">ISO/AWI 17419</a></td>
-        <td>Intelligent transport systems - Cooperative systems - Globally unique identification</td>
-        <td>New Project</td>
-        <td>ISO International Organization for Standardization</td>
-        <td>Communication and Data sharing | Security</td>
     </tr>
     
     <tr>
@@ -2571,19 +2846,19 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/88214.html" target="_blank">ISO/AWI 17573-3</a></td>
-        <td>Electronic fee collection - System architecture for vehicle-related tolling - Data dictionary</td>
-        <td>New Project</td>
+        <td>ISO/AWI 17739-2</td>
+        <td>Intelligent transport systems -  Nomadic & mobile devices -  Roadside infrastructure supported location-based services for connected automated mobility -  Part 2: Part 2: Data structure and message set definition</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
         <td>Communication and Data sharing</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/88213.html" target="_blank">ISO/AWI 17574</a></td>
-        <td>Electronic fee collection - Guidelines for security protection profiles</td>
-        <td>New Project</td>
+        <td>ISO/AWI 17739-3</td>
+        <td>Intelligent transport systems -  Roadside infrastructure supported locationbased services for connected automated mobility via nomadic and mobile devices -  Part 3: Part 3: No turn on red (NTOR) at junctions with traffic signals</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
-        <td>Security</td>
+        <td>Geospatial/ Map services</td>
     </tr>
     
     <tr>
@@ -2603,22 +2878,6 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/86587.html" target="_blank">ISO/AWI 17978-3</a></td>
-        <td>Road vehicles - Service-oriented vehicle diagnostics (SOVD) - Application programming interface (API)</td>
-        <td>New Project</td>
-        <td>ISO International Organization for Standardization</td>
-        <td>Engineering and Management</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://www.iso.org/standard/88233.html" target="_blank">ISO/AWI 18750</a></td>
-        <td>Intelligent transport systems - Co-operative ITS - Local dynamic map</td>
-        <td>New Project</td>
-        <td>ISO International Organization for Standardization</td>
-        <td>Geospatial/ Map services</td>
-    </tr>
-    
-    <tr>
         <td><a href="https://www.iso.org/standard/83404.html" target="_blank">ISO/AWI 19206-5</a></td>
         <td>Road vehicles — Test devices for target vehicles, vulnerable road users and other objects, for assessment of active safety functions — Part 5: Requirements for powered two-wheeler targets</td>
         <td>In development</td>
@@ -2635,6 +2894,14 @@ application requirements specification</td>
     </tr>
     
     <tr>
+        <td><a href="https://www.iso.org/standard/86344.html" target="_blank">ISO/AWI 1979-3</a></td>
+        <td>Road vehicles - On-board diagnostic communication - Zero emissions propulsion systems</td>
+        <td>New Project</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
         <td><a href="https://www.iso.org/standard/87521.html" target="_blank">ISO/AWI 21111-8</a></td>
         <td>Road vehicles - In-vehicle Ethernet --Mbit/s Ethernet transmission media, components and tests</td>
         <td>New Project</td>
@@ -2643,41 +2910,9 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/87963.html" target="_blank">ISO/AWI 23150-11</a></td>
-        <td>Road vehicles - Logical interface between sensors and data fusion unit for automated driving functions - Radar detection interface</td>
-        <td>New Project</td>
-        <td>ISO International Organization for Standardization</td>
-        <td>Perception / Sensors</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://www.iso.org/standard/87964.html" target="_blank">ISO/AWI 23150-12</a></td>
-        <td>Road vehicles - Logical interface between sensors and data fusion unit for automated driving functions - Lidar detection interface</td>
-        <td>New Project</td>
-        <td>ISO International Organization for Standardization</td>
-        <td>Perception / Sensors</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://www.iso.org/standard/87965.html" target="_blank">ISO/AWI 23150-13</a></td>
-        <td>Road vehicles - Logical interface between sensors and data fusion unit for automated driving functions - Camera detection and feature interfaces</td>
-        <td>New Project</td>
-        <td>ISO International Organization for Standardization</td>
-        <td>Perception / Sensors</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://www.iso.org/standard/87966.html" target="_blank">ISO/AWI 23150-14</a></td>
-        <td>Road vehicles - Logical interface between sensors and data fusion unit for automated driving functions - Ultrasonic detection and feature interfaces</td>
-        <td>New Project</td>
-        <td>ISO International Organization for Standardization</td>
-        <td>Perception / Sensors</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://www.iso.org/standard/87967.html" target="_blank">ISO/AWI 23150-15</a></td>
-        <td>Road vehicles - Logical interface between sensors and data fusion unit for automated driving functions - Microphone detection interface</td>
-        <td>New Project</td>
+        <td>ISO/AWI 23150-2</td>
+        <td>Road vehicles -  Logical interface between sensors and data fusion unit for automated driving functions -  Part 2: Object level interfaces</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
         <td>Perception / Sensors</td>
     </tr>
@@ -2691,19 +2926,35 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/87293.html" target="_blank">ISO/AWI 23792-1</a></td>
-        <td>Intelligent transport systems - Motorway chauffeur systems (MCS) - Framework and general requirements</td>
-        <td>New Project</td>
+        <td>ISO/AWI 23792-1</td>
+        <td>Intelligent transport systems -  Motorway chauffeur systems (MCS) -  Part 1: Framework and general requirements</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
         <td>ADAS/AD functions</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/76965.html" target="_blank">ISO/AWI 23792-2</a></td>
-        <td>Intelligent transport systems - Motorway chauffeur systems (MCS) - Requirements and test procedures for discretionary lane change</td>
-        <td>New Project</td>
+        <td>ISO/AWI 23793-2</td>
+        <td>Intelligent transport systems -  Minimal risk manoeuvre (MRM) for automated driving -  Part 2: Road shoulder stop -  Minimum requirements and test procedures</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
-        <td>ADAS/AD functions</td>
+        <td>ADAS/AD functions | Safety</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/AWI 26262-11</td>
+        <td>Road vehicles -  Functional safety -  Part 11: Guidelines on application of ISO 26262 to semiconductors</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/AWI 26262-12</td>
+        <td>Road vehicles -  Functional safety -  Part 12: Adaptation of ISO 26262 for motorcycles</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Safety</td>
     </tr>
     
     <tr>
@@ -2747,35 +2998,43 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/87921.html" target="_blank">ISO/AWI PAS 15118-23</a></td>
-        <td>Road vehicles - Vehicle to grid communication interface -nd generation network layer and application layer requirements conformance test plan - DC charging</td>
-        <td>New Project</td>
+        <td>ISO/AWI 6029-3</td>
+        <td>Intelligent transport systems -  Seamless positioning for multimodal transport in ITS stations via nomadic and mobile devices -  Part 3: Part 3: Secured and trusted sensor interfaces</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
-        <td>Communication and Data sharing</td>
+        <td>Geospatial/ Map services</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/85900.html" target="_blank">ISO/AWI PAS 19486</a></td>
-        <td>Intelligent transport systems - Acceleration control for pedal error (ACPE) - Performance, requirements and test procedures</td>
-        <td>New Project</td>
-        <td>ISO International Organization for Standardization</td>
-        <td>ADAS/AD functions</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://www.iso.org/standard/84091.html" target="_blank">ISO/AWI TR 7874-1</a></td>
-        <td>Intelligent transport systems - Mobility integration multimodal pricing - Framework</td>
-        <td>New Project</td>
-        <td>ISO International Organization for Standardization</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://www.iso.org/standard/83077.html" target="_blank">ISO/AWI TR 8234</a></td>
-        <td>Road vehicles - Pre-crash classification systems</td>
+        <td><a href="https://www.iso.org/standard/88471.html" target="_blank">ISO/AWI 6487</a></td>
+        <td>Road vehicles - Measurement techniques in impact tests - Instrumentation</td>
         <td>New Project</td>
         <td>ISO International Organization for Standardization</td>
         <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/AWI 6813</td>
+        <td>Road vehicles -  Collision classification -  Terminology</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/AWI PAS 25090</td>
+        <td>Road Vehicles -  Software Update engineering -  vehicle configuration information</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Engineering and Management | Security</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/AWI TR 13377</td>
+        <td>Road vehicles -  Guidelines for cooperative interference mitigation of automotive millimeter-wave radar</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
     </tr>
     
     <tr>
@@ -2784,6 +3043,14 @@ application requirements specification</td>
         <td>New Project</td>
         <td>ISO International Organization for Standardization</td>
         <td>Human factors</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/AWI TR 17720</td>
+        <td>Intelligent transport systems —Operational Design Domain Boundary and Attribute Awareness for an Automated Driving System</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>ADAS/AD functions | Simulation</td>
     </tr>
     
     <tr>
@@ -2806,6 +3073,78 @@ application requirements specification</td>
         <td><a href="https://www.iso.org/standard/77134.html" target="_blank">ISO/AWI TR 23841</a></td>
         <td>Road vehicles - Guidelines for the structure and layout of data communication standards</td>
         <td>New Project</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://www.iso.org/standard/85041.html" target="_blank">ISO/AWI TS 14812</a></td>
+        <td>Intelligent transport systems - Vocabulary</td>
+        <td>New Project</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Terminology</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://www.iso.org/standard/88470.html" target="_blank">ISO/AWI TS 17242</a></td>
+        <td>Quasi-static calibration procedure for belt force transducers</td>
+        <td>New Project</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Human factors | Safety</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/AWI TS 21219-27</td>
+        <td>Intelligent transport systems -  Traffic and travel information via transport protocol experts group, generation 2 (TPEG2) -  Part 27: Part 27: Driving restriction regulations (TPEG2-DRR)</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://www.iso.org/standard/81790.html" target="_blank">ISO/AWI TS 21934-2</a></td>
+        <td>Road vehicles - Prospective safety performance assessment of pre-crash technology by virtual simulation - Guidelines for application</td>
+        <td>New Project</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Safety | Simulation</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/AWI TS 22577</td>
+        <td>Intelligent transport systems -  Nomadic and mobile devices -  In-vehicle passenger monitoring and care services using deep learning technology</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Human factors</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://www.iso.org/standard/85896.html" target="_blank">ISO/AWI TS 22741-2</a></td>
+        <td>Intelligent transport systems - Roadside equipment AP-DATEX data interface - Generalised field device - basic management</td>
+        <td>New Project</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://www.iso.org/standard/87515.html" target="_blank">ISO/AWI TS 24315-3</a></td>
+        <td>Intelligent transport systems - Management of electronic traffic regulations (METR) - System of systems requirements and architecture (SoSR)</td>
+        <td>New Project</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/AWI TS 26048-18</td>
+        <td>Intelligent transport systems -  Field device SNMP data interface -  Part 18: Part 18: Roadside units</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/AWI TS 26048-3</td>
+        <td>Intelligent transport systems -  Field device SNMP data interface -  Part 3: Variable and dynamic message signs</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
         <td>Communication and Data sharing</td>
     </tr>
@@ -2843,67 +3182,115 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/85041.html" target="_blank">ISO/AWI TS 14812</a></td>
-        <td>Intelligent transport systems - Vocabulary</td>
-        <td>New Project</td>
+        <td>ISO/CD 17387</td>
+        <td>Intelligent transport systems -  Lane change decision aid systems (LCDAS) -  Performance requirements and test procedures</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
-        <td>Terminology</td>
+        <td>ADAS/AD functions</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/88470.html" target="_blank">ISO/AWI TS 17242</a></td>
-        <td>Quasi-static calibration procedure for belt force transducers</td>
-        <td>New Project</td>
+        <td>ISO/CD 17978-3</td>
+        <td>Road vehicles -  Service-oriented vehicle diagnostics (SOVD) -  Part 3: Application programming interface (API)</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
-        <td>Human factors | Safety</td>
+        <td>Engineering and Management</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/88220.html" target="_blank">ISO/AWI TS 19082</a></td>
-        <td>Intelligent transport systems - Definition of data elements and data frames between roadside modules and signal controllers for cooperative signal control</td>
-        <td>New Project</td>
+        <td>ISO/CD 23150-11</td>
+        <td>Road vehicles -  Logical interface between sensors and data fusion unit for automated driving functions -  Part 11: Radar specific interfaces</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
-        <td>Communication and Data sharing</td>
+        <td>Perception / Sensors</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/81790.html" target="_blank">ISO/AWI TS 21934-2</a></td>
-        <td>Road vehicles - Prospective safety performance assessment of pre-crash technology by virtual simulation - Guidelines for application</td>
-        <td>New Project</td>
+        <td>ISO/CD 23150-12</td>
+        <td>Road vehicles -  Logical interface between sensors and data fusion unit for automated driving functions -  Part 12: Lidar specific interfaces</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
-        <td>Safety | Simulation</td>
+        <td>Perception / Sensors</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/88210.html" target="_blank">ISO/AWI TS 22726-1</a></td>
-        <td>Intelligent transport systems - Dynamic data and map database specification for connected and automated driving system applications - Architecture and logical data model for harmonization of static map data</td>
-        <td>New Project</td>
+        <td>ISO/CD 23150-13</td>
+        <td>Road vehicles -  Logical interface between sensors and data fusion unit for automated driving functions -  Part 13: Camera specific interfaces</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Perception / Sensors</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/CD 23150-14</td>
+        <td>Road vehicles -  Logical interface between sensors and data fusion unit for automated driving functions -  Part 14: Ultrasonic specific interfaces</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Perception / Sensors</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/CD 23150-15</td>
+        <td>Road vehicles -  Logical interface between sensors and data fusion unit for automated driving functions -  Part 15: Microphone specific interfaces</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Perception / Sensors</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/CD 23150-20</td>
+        <td>Road vehicles -  Logical interface between sensors and data fusion unit for automated driving functions -  Part 20: Supportive and sensor input interfaces</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Perception / Sensors</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/CD 23792-2</td>
+        <td>Intelligent transport systems -  Motorway chauffeur systems (MCS) -  Part 2: Requirements and test procedures for discretionary lane change</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>ADAS/AD functions</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/CD 6029-2</td>
+        <td>Intelligent transport systems -  Seamless positioning for multimodal transportation in ITS stations -  Part 2: Nomadic and mobile device dataset for positioning data fusion</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
         <td>Geospatial/ Map services</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/85896.html" target="_blank">ISO/AWI TS 22741-2</a></td>
-        <td>Intelligent transport systems - Roadside equipment AP-DATEX data interface - Generalised field device - basic management</td>
-        <td>New Project</td>
+        <td><a href="https://www.iso.org/standard/87921.html" target="_blank">ISO/CD PAS 15118-23</a></td>
+        <td>Road vehicles - Vehicle to grid communication interface -nd generation network layer and application layer requirements conformance test plan - DC charging</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
         <td>Communication and Data sharing</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/87515.html" target="_blank">ISO/AWI TS 24315-3</a></td>
-        <td>Intelligent transport systems - Management of electronic traffic regulations (METR) - System of systems requirements and architecture (SoSR)</td>
-        <td>New Project</td>
+        <td>ISO/CD TR 12786.2</td>
+        <td>Intelligent transport systems -  Big data and artificial intelligence supporting intelligent transport systems -  Use cases</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
-        <td>Communication and Data sharing</td>
+        <td>A.I.</td>
     </tr>
     
     <tr>
-        <td><a href="https://www-iso-org.translate.goog/es/contents/data/standard/08/70/87054.html?browse=tc&_x_tr_sl=es&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=sc" target="_blank">ISO/AWI TS 26048-1</a></td>
-        <td>Intelligent transport systems - Field device SNMP data interface - Global objects</td>
-        <td>New Project</td>
+        <td>ISO/CD TR 17739-1</td>
+        <td>Intelligent transport systems -  Roadside infrastructure supported location-based services on nomadic and mobile devices for urban connected automated mobility -  Part 1: General information and use cases definition</td>
+        <td>In development</td>
         <td>ISO International Organization for Standardization</td>
-        <td>Communication and Data sharing</td>
+        <td>Geospatial/ Map services</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/CD TR 8234</td>
+        <td>Road vehicles -  Pre-crash classification systems</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Safety</td>
     </tr>
     
     <tr>
@@ -2915,6 +3302,158 @@ application requirements specification</td>
     </tr>
     
     <tr>
+        <td>ISO/CD TS 24315-2</td>
+        <td>Intelligent transport systems -  Management of electronic traffic regulations (METR) -  Part 2: Operational concepts (ConOps)</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing | Geospatial/ Map services</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://www.iso.org/standard/88767.html" target="_blank">ISO/DIS 15118-4</a></td>
+        <td>Road vehicles - Vehicle to grid communication interface - Part 4 Network and application protocol conformance test</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/DIS 17419</td>
+        <td>Intelligent transport systems -  Globally unique identification</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing | Security</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/DIS 18750</td>
+        <td>Intelligent transport systems -  Local dynamic map</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Geospatial/ Map services</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/DIS 19082</td>
+        <td>Intelligent transport systems -  Definition of data elements and data frames between roadside modules and signal controllers for cooperative signal control</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/DIS 23150-1</td>
+        <td>Road vehicles -  Logical interface between sensors and data fusion unit for automated driving functions -  Part 1: General information and principles</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Perception / Sensors</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/DIS 7856</td>
+        <td>Intelligent transport systems -  Remote support for low speed automated driving systems (RS-LSADS) -  Performance requirements, system requirements and performance test procedures</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>ADAS/AD functions</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/DPAS 19486</td>
+        <td>Intelligent transport systems -  Acceleration control for pedal error (ACPE) -  Performance requirements and test procedures</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>ADAS/AD functions</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/DPAS 8235</td>
+        <td>Road vehicles -  Ergonomic aspects of human vehicle interactions -  Taxonomy for the classification of adaptive interactive vehicle systems</td>
+        <td>Published</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Human factors</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/DTR 12353-4</td>
+        <td>Road vehicles -  Traffic accident analysis -  Part 4: Compilation of methodologies for assessment of vehicle safety system effectiveness</td>
+        <td>Published</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/DTR 24856</td>
+        <td>Intelligent transport systems -  Mobility integration -  Role model of the human-centric predictive risk information provisioning service</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Human factors</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/DTR 6029-1</td>
+        <td>Intelligent transport systems -  Seamless positioning for multimodal transportation in ITS stations -  Part 1: General information and use case definition</td>
+        <td>Published</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Geospatial/ Map services</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/DTS 24315-1</td>
+        <td>Intelligent transport systems -  Management of electronic traffic regulations (METR) -  Part 1: Vocabulary</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing | Geospatial/ Map services</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/FDIS 15118-10</td>
+        <td>Road vehicles -  Vehicle to grid communication interface -  Part 10: Physical layer and data link layer requirements for single-pair Ethernet</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/IEC AWI TS 22440-1</td>
+        <td>Artificial intelligence -  Functional safety and AI systems -  Part 1: Requirements</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>A.I.</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/IEC AWI TS 22440-2</td>
+        <td>Artificial intelligence -  Functional safety and AI systems -  Part 2: Guidance</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>A.I.</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/IEC AWI TS 22440-3</td>
+        <td>Artificial intelligence -  Functional safety and AI systems -  Part 3: Examples of application</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>A.I.</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/IEC CD TS 42119-2</td>
+        <td>Artificial intelligence -  Testing of AI -  Part 2: Overview of testing AI systems</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>A.I.</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/IEC CD TS 42119-3</td>
+        <td>Artificial intelligence -  Testing of AI -  Part 3: Verification and validation analysis of AI systems</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>A.I.</td>
+    </tr>
+    
+    <tr>
         <td><a href="https://www.iso.org/standard/72024.html" target="_blank">ISO/IEC TR 27550:2019</a></td>
         <td>Information technology - Security techniques - Privacy engineering</td>
         <td>Published</td>
@@ -2923,11 +3462,19 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/82951.html" target="_blank">ISO/NP 7856</a></td>
-        <td>Intelligent transport systems — Remote support for LSAD system (RS-LSADS) — Performance requirements, system requirements and performance test procedures</td>
+        <td>ISO/IEC WD 5888</td>
+        <td>Information security, cybersecurity and privacy protection -  Security requirements and evaluation activities for connected vehicle devices</td>
         <td>In development</td>
         <td>ISO International Organization for Standardization</td>
-        <td>ADAS/AD functions</td>
+        <td>Security</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/PAS 8800</td>
+        <td>Road vehicles -  Safety and artificial intelligence</td>
+        <td>Published</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>A.I. | Safety</td>
     </tr>
     
     <tr>
@@ -2936,14 +3483,6 @@ application requirements specification</td>
         <td>Published</td>
         <td>ISO International Organization for Standardization</td>
         <td>Engineering and Management | Safety | Security</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://www.iso.org/standard/78408.html" target="_blank">ISO/PWI 24315-1</a></td>
-        <td>Management of Electronic Traffic Regulations</td>
-        <td>In development</td>
-        <td>ISO International Organization for Standardization</td>
-        <td>Geospatial/ Map services | Safety | Terminology</td>
     </tr>
     
     <tr>
@@ -2971,6 +3510,14 @@ application requirements specification</td>
     </tr>
     
     <tr>
+        <td>ISO/TR 17732</td>
+        <td>Intelligent transport systems (ITS) -  Communications -  ITS communication role and functional model</td>
+        <td>Published</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
         <td><a href="https://www.iso.org/standard/85050.html" target="_blank">ISO/TR 17783</a></td>
         <td>Intelligent transport systems - Mobility integration - Role and functional model for mobility using low earth orbit (LEO) satellite system</td>
         <td>Published</td>
@@ -2979,11 +3526,51 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/84170.html" target="_blank">ISO/WD 15118-21</a></td>
-        <td>Road vehicles - Vehicle to grid communication interface -nd generation network layer and application layer requirements conformance test plan</td>
-        <td>New Project</td>
+        <td>ISO/TR 21734-3</td>
+        <td>Intelligent transport systems -  Performance testing for connectivity and safety functions of automated driving buses in public transport -  Part 3: Service framework and use cases</td>
+        <td>Published</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Safety | Security</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/TS 20077-3</td>
+        <td>Road vehicles -  Extended vehicle (ExVe) methodology -  Part 3: Upstream process to develop services</td>
+        <td>Published</td>
         <td>ISO International Organization for Standardization</td>
         <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/TS 22741-10</td>
+        <td>Intelligent transport systems -  Roadside modules AP-DATEX data interface -  Part 10: Variable message signs</td>
+        <td>Published</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/TS 22741-2</td>
+        <td>Intelligent transport systems -  Roadside modules AP-DATEX data interface -  Part 2: Generalised field device basic management</td>
+        <td>Published</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/TS 26048-1</td>
+        <td>Intelligent transport systems -  Field device Simple Network Management Protocol (SNMP) data interface -  Part 1: Global objects</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>ISO/WD 21734-2</td>
+        <td>Public transport -  Performance testing for connectivity and safety functions of automated driving bus -  Part 2: Performance requirements and test procedures</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Safety | Security</td>
     </tr>
     
     <tr>
@@ -3032,174 +3619,6 @@ application requirements specification</td>
         <td>Published</td>
         <td>ITU International Telecommunication Union</td>
         <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td>J2735</td>
-        <td>V2X Communications Message Set Dictionary</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td>J2735ASN_202007</td>
-        <td>V2X Communications Message Set Dictionary™ ASN file</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td>J2735SET_202007</td>
-        <td>V2X Communications Message Set Dictionary™ Set</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td>J2945/1</td>
-        <td>On-board system requirements for V2V safety communications</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Communication and Data sharing | Safety</td>
-    </tr>
-    
-    <tr>
-        <td>J2945/1A</td>
-        <td>Vehicle-Level Test Procedures for V2V Safety Communications</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>ADAS/AD functions | Safety</td>
-    </tr>
-    
-    <tr>
-        <td>J2945/1B</td>
-        <td>On-Board System Requirements for V2V Safety Communications by Non-Light-Duty Vehicles and Motorcycles</td>
-        <td>In development</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td>J2945/6</td>
-        <td>Performance Requirements for Cooperative Adaptive Cruise Control and Platooning</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>ADAS/AD functions</td>
-    </tr>
-    
-    <tr>
-        <td>J2945/8</td>
-        <td>Cooperative Perception System</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Perception / Sensors</td>
-    </tr>
-    
-    <tr>
-        <td>J2945/D</td>
-        <td>Road user-to-Road User Courteous Communication</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Human factors</td>
-    </tr>
-    
-    <tr>
-        <td>J2945/E</td>
-        <td>Data Set Requirements and Design to Support Traffic Signal Information Enabling Applications</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td>J3067_202010</td>
-        <td>Candidate Improvements to Dedicated Short Range Communications (DSRC) Message Set Dictionary [SAE J2735] Using Systems Engineering Methods(STABILIZED Oct 2020)</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td>J3161</td>
-        <td>LTE Vehicle-to-Everything (LTE-V2X) Deployment Profiles and Radio Parameters for Single Radio Channel Multi-Service Coexistence</td>
-        <td>In development</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td>J3161/1</td>
-        <td>On-Board System Requirements for LTE-V2X V2V Safety Communications</td>
-        <td>In development</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Communication and Data sharing | Safety</td>
-    </tr>
-    
-    <tr>
-        <td>J3161/1A</td>
-        <td>Vehicle Level Validation Test Procedures for V2V Safety Communications</td>
-        <td>In development</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Communication and Data sharing | Safety</td>
-    </tr>
-    
-    <tr>
-        <td>J3161/2</td>
-        <td>LTE Vehicle-to-Everything (LTE-V2X) Deployment Profiles and Radio Parameters for 10 MHz Channel</td>
-        <td>In development</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td>J3216</td>
-        <td>Taxonomy and Definitions for Terms Related to Cooperative Driving Automation for On-Road Motor Vehicles</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>ADAS/AD functions | Terminology</td>
-    </tr>
-    
-    <tr>
-        <td>J3286</td>
-        <td>Identity Management Entity within Security Services</td>
-        <td>In development</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Security</td>
-    </tr>
-    
-    <tr>
-        <td>J3287</td>
-        <td>V2X Misbehavior Reporting</td>
-        <td>In development</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td>J3292</td>
-        <td>Automated Vehicle Marshalling System</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>ADAS/AD functions</td>
-    </tr>
-    
-    <tr>
-        <td>J3297</td>
-        <td>Analysis of V2X services on the Uu Interface</td>
-        <td>In development</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td>J3298</td>
-        <td>WIP for Ground Vehicle Artificial Intelligence Data Information Report This SAE Technical Information Report provides preliminary information regarding the current state of data collection, data processing methods, and usage for developing AI and its enabled systems and ...</td>
-        <td>In development</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>A.I.</td>
     </tr>
     
     <tr>
@@ -3275,6 +3694,62 @@ application requirements specification</td>
     </tr>
     
     <tr>
+        <td>P1609.2.1</td>
+        <td>Standard for Wireless Access in Vehicular Environments (WAVE) -  Certificate Management Interfaces for End Entities</td>
+        <td>In development</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>P2846a</td>
+        <td>Standard for Assumptions in Safety-Related Models for Automated Driving Systems Amendment</td>
+        <td>In development</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td>P3116</td>
+        <td>Standard for Automotive Radar Performance Metrics and Testing Methods for ADAS and ADS Applications</td>
+        <td>In development</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>ADAS/AD functions</td>
+    </tr>
+    
+    <tr>
+        <td>P3344</td>
+        <td>Standard for Scenario Representation for Autonomous Driving</td>
+        <td>In development</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>Simulation</td>
+    </tr>
+    
+    <tr>
+        <td>P3412</td>
+        <td>Standard for Autonomous Driving Architecture (ADA)</td>
+        <td>In development</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>ADAS/AD functions</td>
+    </tr>
+    
+    <tr>
+        <td>P3534</td>
+        <td>Standard for Operational and Safety Requirements for Autonomous Vehicles in Port Environments</td>
+        <td>In development</td>
+        <td>IEEE The Institute of Electrical and Electronics Engineers, Inc.</td>
+        <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://knowledge.bsigroup.com/products/connected-automotive-ecosystems-impact-of-security-on-safety-code-of-practice/standard" target="_blank">PAS 11281</a></td>
+        <td>Connected Automotive Ecosystems. Impact of Security on Safety</td>
+        <td>Published</td>
+        <td>BSI British Standards Institution</td>
+        <td>Engineering and Management | Safety | Security</td>
+    </tr>
+    
+    <tr>
         <td><a href="https://knowledge.bsigroup.com/products/assuring-the-operational-safety-of-automated-vehicles-specification/standard" target="_blank">PAS 1881:2022</a></td>
         <td>Assuring the safety of automated vehicle trials and testing. Specification</td>
         <td>Published</td>
@@ -3312,14 +3787,6 @@ application requirements specification</td>
         <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>Security</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/connected-automotive-ecosystems-impact-of-security-on-safety-code-of-practice/standard" target="_blank">PAS 11281</a></td>
-        <td>Connected Automotive Ecosystems. Impact of Security on Safety</td>
-        <td>Published</td>
-        <td>BSI British Standards Institution</td>
-        <td>Engineering and Management | Safety | Security</td>
     </tr>
     
     <tr>
@@ -3404,7 +3871,7 @@ application requirements specification</td>
     
     <tr>
         <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-cooperative-its-test-requirements-and-protocol-implementation-conformance-statement-pics-pro-forma-for-cen-iso-ts-17426/standard" target="_blank">PD CEN ISO/TS 21189:2019</a></td>
-        <td>Intelligent transport systems – Cooperative ITS – Test requirements and protocol implementation conformance statement (PICS)</td>
+        <td>Intelligent transport systems – Cooperative ITS – Test requirements and protocol implementation conformance statement (PICS) </td>
         <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>Communication and Data sharing</td>
@@ -3563,6 +4030,22 @@ application requirements specification</td>
     </tr>
     
     <tr>
+        <td>PD ISO/PAS  25493</td>
+        <td>PD ISO/PAS 25493 Test scenarios for ADS -  Controlled Natural Language for Description for ADS Scenarios</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Simulation</td>
+    </tr>
+    
+    <tr>
+        <td>PD ISO/PAS 11585-2</td>
+        <td>PD ISO/PAS 11585-2 Road vehicles – Partial driving automation -  Part 2: Test method to evaluate the performance of partial driving automation conditional hands-free driving systems</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>ADAS/AD functions</td>
+    </tr>
+    
+    <tr>
         <td><a href="https://knowledge.bsigroup.com/products/road-vehicles-guidelines-for-auditing-cybersecurity-engineering/standard" target="_blank">PD ISO/PAS 5112:2022</a></td>
         <td>Road vehicles — Guidelines for auditing cybersecurity engineering</td>
         <td>Published</td>
@@ -3571,59 +4054,11 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://standardsdevelopment.bsigroup.com/projects/2021-02590" target="_blank">PD ISO/PAS 8800</a></td>
-        <td>Road vehicles — Safety and artificial intelligence as above</td>
-        <td>In development</td>
-        <td>BSI British Standards Institution</td>
-        <td>A.I. | Safety</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/road-vehicles-partial-driving-automation-technical-characteristics-of-conditional-hands-free-driving-systems/standard" target="_blank">PD ISO/PAS 11585:2023</a></td>
-        <td>Road vehicles - Partial driving automation - Technical characteristics of conditional hands-free driving systems</td>
-        <td>In development</td>
-        <td>BSI British Standards Institution</td>
-        <td>ADAS/AD functions | Human factors</td>
-    </tr>
-    
-    <tr>
         <td><a href="https://knowledge.bsigroup.com/products/taxonomy-and-definitions-for-terms-related-to-driving-automation-systems-for-on-road-motor-vehicles/standard" target="_blank">PD ISO/SAE PAS 22736:2021</a></td>
         <td>Taxonomy and definitions for terms related to driving automation systems for on-road motor vehicles</td>
         <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>ADAS/AD functions | Terminology</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-use-cases-for-sharing-of-probe-data/standard" target="_blank">PD ISO/TR 4286:2021</a></td>
-        <td>Intelligent transport systems - Use cases for sharing of probe data</td>
-        <td>Published</td>
-        <td>BSI British Standards Institution</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-mobility-integration-role-model-of-its-service-application-in-smart-cities/standard" target="_blank">PD ISO/TR 4445:2021</a></td>
-        <td>Intelligent transport systems — Mobility integration — Role model of ITS service application in smart cities</td>
-        <td>Published</td>
-        <td>BSI British Standards Institution</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/road-vehicles-safety-and-cybersecurity-for-automated-driving-systems-design-verification-and-validation/standard" target="_blank">PD ISO/TR 4804:2020</a></td>
-        <td>Road vehicles - Safety and cybersecurity for automated driving systems - Design, verification and validation</td>
-        <td>Published</td>
-        <td>BSI British Standards Institution</td>
-        <td>Safety | Security</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/road-vehicles-functional-safety-the-application-to-generic-rechargeable-energy-storage-systems-for-new-energy-vehicle/standard" target="_blank">PD ISO/TR 9968:2023</a></td>
-        <td>Road vehicles. Functional safety. The application to generic rechargeable energy storage systems for new energy vehicle</td>
-        <td>Published</td>
-        <td>BSI British Standards Institution</td>
-        <td>Safety</td>
     </tr>
     
     <tr>
@@ -3659,14 +4094,6 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://www.iso.org/standard/82064.html" target="_blank">PD ISO/TR 21734-3</a></td>
-        <td>Public transport — Performance testing for connectivity and safety functions of automated driving bus — Part 3: Service framework and use cases</td>
-        <td>In development</td>
-        <td>BSI British Standards Institution</td>
-        <td>Safety</td>
-    </tr>
-    
-    <tr>
         <td><a href="https://knowledge.bsigroup.com/products/road-vehicles-human-performance-and-state-in-the-context-of-automated-driving-considerations-in-designing-experiments-to-investigate-transition-processes?version=standard" target="_blank">PD ISO/TR 21959-2:2020</a></td>
         <td>Road vehicles - Human performance and state in the context of automated driving - Part 2: Experimental guidance to investigate transition processes</td>
         <td>Published</td>
@@ -3683,6 +4110,14 @@ application requirements specification</td>
     </tr>
     
     <tr>
+        <td>PD ISO/TR 24935</td>
+        <td>PD ISO/TR 24935 Road Vehicles -  Software Update over the air using mobile cellular network</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing | Security</td>
+    </tr>
+    
+    <tr>
         <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-system-architecture-taxonomy-terminology-and-data-modelling-training-requirements-for-its-architecture/standard" target="_blank">PD ISO/TR 25104:2008</a></td>
         <td>Intelligent transport systems - System architecture, taxonomy, terminology and data modelling - Training requirements for ITS architecture</td>
         <td>Published</td>
@@ -3691,11 +4126,35 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-low-speed-automated-driving-system-lsads-service-role-and-functional-model/standard" target="_blank">PD ISO/TS 5255-1:2022</a></td>
-        <td>Intelligent transport systems — Low speed automated driving system (LSADS) — Part 1: Service role and functional model related to ISO/PWI TS 5255-1 & PD ISO/TS 5255-1</td>
+        <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-use-cases-for-sharing-of-probe-data/standard" target="_blank">PD ISO/TR 4286:2021</a></td>
+        <td>Intelligent transport systems - Use cases for sharing of probe data</td>
         <td>Published</td>
         <td>BSI British Standards Institution</td>
-        <td>ADAS/AD functions</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-mobility-integration-role-model-of-its-service-application-in-smart-cities/standard" target="_blank">PD ISO/TR 4445:2021</a></td>
+        <td>Intelligent transport systems — Mobility integration — Role model of ITS service application in smart cities</td>
+        <td>Published</td>
+        <td>BSI British Standards Institution</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://knowledge.bsigroup.com/products/road-vehicles-safety-and-cybersecurity-for-automated-driving-systems-design-verification-and-validation/standard" target="_blank">PD ISO/TR 4804:2020</a></td>
+        <td>Road vehicles - Safety and cybersecurity for automated driving systems - Design, verification and validation</td>
+        <td>Published</td>
+        <td>BSI British Standards Institution</td>
+        <td>Safety | Security</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://knowledge.bsigroup.com/products/road-vehicles-functional-safety-the-application-to-generic-rechargeable-energy-storage-systems-for-new-energy-vehicle/standard" target="_blank">PD ISO/TR 9968:2023</a></td>
+        <td>Road vehicles. Functional safety. The application to generic rechargeable energy storage systems for new energy vehicle</td>
+        <td>Published</td>
+        <td>BSI British Standards Institution</td>
+        <td>Safety</td>
     </tr>
     
     <tr>
@@ -3704,6 +4163,22 @@ application requirements specification</td>
         <td>Published</td>
         <td>BSI British Standards Institution</td>
         <td>Engineering and Management | Terminology</td>
+    </tr>
+    
+    <tr>
+        <td>PD ISO/TS 19206-7</td>
+        <td>Road vehicles -  Test devices for target vehicles, vulnerable road users and other objects, for assessment of active safety functions -  Part 7: Test method for target carrier system behaviour</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Human factors | Safety | Simulation</td>
+    </tr>
+    
+    <tr>
+        <td>PD ISO/TS 20077-4</td>
+        <td>Road vehicles -  Extended vehicle (ExVe) methodology -  Part 4: Data structure description.</td>
+        <td>In development</td>
+        <td>ISO International Organization for Standardization</td>
+        <td>Communication and Data sharing | Security</td>
     </tr>
     
     <tr>
@@ -3739,6 +4214,14 @@ application requirements specification</td>
     </tr>
     
     <tr>
+        <td><a href="https://knowledge.bsigroup.com/products/intelligent-transport-systems-low-speed-automated-driving-system-lsads-service-role-and-functional-model/standard" target="_blank">PD ISO/TS 5255-1:2022</a></td>
+        <td>Intelligent transport systems — Low speed automated driving system (LSADS) — Part 1: Service role and functional model related to ISO/PWI TS 5255-1 & PD ISO/TS 5255-1</td>
+        <td>Published</td>
+        <td>BSI British Standards Institution</td>
+        <td>ADAS/AD functions</td>
+    </tr>
+    
+    <tr>
         <td>PNW 47-2818 ED1</td>
         <td>Future IEC XXXXXX ED.1 Semiconductor devices - Detection modules of autonomous land vehicle - Part 1Testing methods of detection performance for LiDAR</td>
         <td>In development</td>
@@ -3755,19 +4238,27 @@ application requirements specification</td>
     </tr>
     
     <tr>
+        <td>prCEN/TS 16157-10 rev</td>
+        <td>Intelligent transport systems -  DATEX II data exchange specifications for traffic management and information -  Part 10: Energy infrastructure publications</td>
+        <td>In development</td>
+        <td>CEN European Committee for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>prCEN/TS 16157-12 rev</td>
+        <td>Intelligent transport systems -  DATEX II data exchange specifications for traffic management and information -  Part 12: Facility related publications</td>
+        <td>In development</td>
+        <td>CEN European Committee for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
         <td>prCEN/TS 16157-8 rev</td>
         <td>Intelligent transport systems - DATEX II data exchange specifications for traffic management and information - Part 8 Traffic management publications and extensions dedicated to the urban environment</td>
         <td>In development</td>
         <td>CEN European Committee for Standardization</td>
         <td>Communication and Data sharing | Geospatial/ Map services</td>
-    </tr>
-    
-    <tr>
-        <td>prCEN/TS 17118 rev</td>
-        <td>Intelligent transport systems - Public transport - Open API for distributed journey planning</td>
-        <td>In development</td>
-        <td>CEN European Committee for Standardization</td>
-        <td>Communication and Data sharing | Geospatial/ Map services | Human factors</td>
     </tr>
     
     <tr>
@@ -3779,6 +4270,30 @@ application requirements specification</td>
     </tr>
     
     <tr>
+        <td>prEN 16157-2 rev</td>
+        <td>Intelligent transport systems -  DATEX II data exchange specifications for traffic management and information -  Part 2: Location referencing</td>
+        <td>In development</td>
+        <td>CEN European Committee for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>prEN 16157-3 rev</td>
+        <td>Intelligent transport systems -  DATEX II data exchange specifications for traffic management and information -  Part 3: Situation Publication</td>
+        <td>In development</td>
+        <td>CEN European Committee for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>prEN 16157-7 rev</td>
+        <td>Intelligent transport systems -  DATEX II data exchange specifications for traffic management and information -  Part 7: Common data elements</td>
+        <td>In development</td>
+        <td>CEN European Committee for Standardization</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
         <td>prEN 17249-6</td>
         <td>Intelligent transport systems - eSafety - Part 6 eCall for UNECE Category L2, L4, L5, L6 and L7 tricycles and quadricycles</td>
         <td>In development</td>
@@ -3787,7 +4302,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>prEN 18052</td>
+        <td>prEN 18052 </td>
         <td>Intelligent transport systems - eSafety - eCall HLAP in hybrid circuit switched/packet switched network environments</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -3796,7 +4311,7 @@ application requirements specification</td>
     
     <tr>
         <td>prEN ISO 15008 rev</td>
-        <td>Road vehicles - Ergonomic aspects of transport information and control systems - Specifications and test procedures for in-vehicle visual presentation</td>
+        <td>Road vehicles - Ergonomic aspects of transport information and control systems - Specifications and test procedures for in-vehicle visual presentation </td>
         <td>In development</td>
         <td>CEN European Committee for Standardization</td>
         <td>Human factors</td>
@@ -3804,7 +4319,7 @@ application requirements specification</td>
     
     <tr>
         <td>prEN ISO 15118-3 rev</td>
-        <td>Road vehicles - Vehicle to grid communication interface - Part 3 Physical and data link layer requirements</td>
+        <td>Road vehicles - Vehicle to grid communication interface - Part 3 Physical and data link layer requirements </td>
         <td>In development</td>
         <td>CEN European Committee for Standardization</td>
         <td>Communication and Data sharing</td>
@@ -3824,14 +4339,6 @@ application requirements specification</td>
         <td>Published</td>
         <td>SAC Standardization Administration of the People's Republic of China</td>
         <td>Security</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://standardsdevelopment.bsigroup.com/projects/9021-06397#/section" target="_blank">Revision of TS 13149-8 2013 -</a></td>
-        <td>Standardization. General rules|Transport. Road|IT applications. Transport and trade</td>
-        <td>In development</td>
-        <td>BSI British Standards Institution</td>
-        <td>Communication and Data sharing</td>
     </tr>
     
     <tr>
@@ -3907,7 +4414,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 1211</td>
+        <td>SAE J1211</td>
         <td>Handbook for robustness validation of automotive electrical/electronic modules</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -3915,7 +4422,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 1698</td>
+        <td>SAE J1698</td>
         <td>Event Data Recorder</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -3923,7 +4430,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 1698/1 APPENDIX A</td>
+        <td>SAE J1698/1 APPENDIX A</td>
         <td>J1698-1A Pedestrian Protection EDR Output Data Definition Appendix to SAE J1698-1 Event Data Recorder - Output Data Definition</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -3931,7 +4438,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 1698/2</td>
+        <td>SAE J1698/2</td>
         <td>Event Data Recorder - Retrieval Tool Protocol</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -3939,7 +4446,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 1730</td>
+        <td>SAE J1730</td>
         <td>ABS Exciter Ring Location Standardization</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -3947,7 +4454,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 1879</td>
+        <td>SAE J1879</td>
         <td>Handbook for robustness validation of semiconductor devices in automotive applications</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -3955,7 +4462,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 1938</td>
+        <td>SAE J1938</td>
         <td>Product development process and checklist for vehicle electronic systems</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -3963,7 +4470,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 1939/81</td>
+        <td>SAE J1939/81</td>
         <td>Network Management for ECUs</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -3971,7 +4478,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2399</td>
+        <td>SAE J2399</td>
         <td>Adaptive Cruise Control (ACC) Operating Characteristics and User Interface</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -3979,7 +4486,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2400</td>
+        <td>SAE J2400</td>
         <td>Human Factors in Forward Collision Warning Systems: Operating Characteristics and User Interface Requirements (FVCWS)</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -3987,7 +4494,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2402</td>
+        <td>SAE J2402</td>
         <td>Road Vehicles - Symbols for Controls, Indicators, and Tell-Tales</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -3995,7 +4502,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2640</td>
+        <td>SAE J2640</td>
         <td>General automotive embedded software design requirements</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -4003,7 +4510,39 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2808</td>
+        <td>SAE J2735</td>
+        <td>V2X Communications Message Set Dictionary</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J2735ASN_202007</td>
+        <td>V2X Communications Message Set Dictionary™ ASN file</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J2735D</td>
+        <td>Dedicated Short Range Communications (DSRC) Message Set Dictionary (REVISED)</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J2735SET_202007</td>
+        <td>V2X Communications Message Set Dictionary™ Set</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J2808</td>
         <td>Lane Departure Warning Systems: Information for the Human Interface</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -4011,7 +4550,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2836/2</td>
+        <td>SAE J2836/2</td>
         <td>Use Cases for Communication Between Plug-in Vehicles and Off-Board DC Charger</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -4019,7 +4558,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2847/2</td>
+        <td>SAE J2847/2</td>
         <td>Communication Between Plug-in Vehicles and Off-Board DC Chargers</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -4027,7 +4566,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2847/3</td>
+        <td>SAE J2847/3</td>
         <td>Communication for Plug-in Vehicles as a Distributed Energy Source</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -4035,7 +4574,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2847/5</td>
+        <td>SAE J2847/5</td>
         <td>Communication Between Plug-in Vehicles and Customers</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -4043,7 +4582,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2931/1</td>
+        <td>SAE J2931/1</td>
         <td>Digital Communications for Plug-in Electric Vehicles</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -4051,7 +4590,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2945</td>
+        <td>SAE J2945</td>
         <td>Dedicated Short Range Communication (DSRC) Systems Engineering Process Guidance for SAE J2945/X Documents and Common Design Concepts™</td>
         <td>In development</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -4059,7 +4598,31 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2945/2</td>
+        <td>SAE J2945/1</td>
+        <td>On-board system requirements for V2V safety communications</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing | Safety</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J2945/1A</td>
+        <td>Vehicle-Level Test Procedures for V2V Safety Communications </td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>ADAS/AD functions | Safety</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J2945/1B</td>
+        <td>On-Board System Requirements for V2V Safety Communications by Non-Light-Duty Vehicles and Motorcycles</td>
+        <td>In development</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J2945/2</td>
         <td>Dedicated Short Range Communications (DSRC) Performance Requirements for V2V Safety Awareness</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -4067,7 +4630,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2945/2A</td>
+        <td>SAE J2945/2A</td>
         <td>Dedicated Short Range Communications (DSRC) Performance Requirements for V2V Safety AwarenessTM ASN File</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -4075,7 +4638,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2945/2S</td>
+        <td>SAE J2945/2S</td>
         <td>Dedicated Short Range Communications (DSRC) Performance Requirements for V2V Safety AwarenessTM Set</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -4083,7 +4646,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2945/5</td>
+        <td>SAE J2945/5</td>
         <td>Service Specific Permissions and Security Guidelines for Connected Vehicle Applications</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -4091,7 +4654,15 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2945/6A</td>
+        <td>SAE J2945/6</td>
+        <td>Performance Requirements for Cooperative Adaptive Cruise Control and Platooning</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>ADAS/AD functions</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J2945/6A</td>
         <td>Performance Requirements for Cooperative Adaptive Cruise Control (CACC) and Platooning<sup>TM</sup> ASN File</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -4099,7 +4670,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 2945/6S</td>
+        <td>SAE J2945/6S</td>
         <td>Performance Requirements for Cooperative Adaptive Cruise Control (CACC) and Platooning<sup>TM</sup> Set</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
@@ -4107,104 +4678,24 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>SAE J 3005-2</td>
-        <td>Permanently or Semi-Permanently Installed Diagnostic Communication Devices, Security Guidelines</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Security</td>
-    </tr>
-    
-    <tr>
-        <td>SAE J 3016</td>
-        <td>Taxonomy and definitions for terms related driving automation systems for on-road motor vehicles</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>ADAS/AD functions | Terminology</td>
-    </tr>
-    
-    <tr>
-        <td>SAE J 3018</td>
-        <td>Guidelines for Safe On-Road Testing of SAE Level 3, 4, and 5 Prototype Automated Driving Systems (ADS)</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>ADAS/AD functions | Safety</td>
-    </tr>
-    
-    <tr>
-        <td>SAE J 3134</td>
-        <td>Automated Driving System (ADS) Marker Lamp</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Human factors | Safety</td>
-    </tr>
-    
-    <tr>
-        <td>SAE J 3171</td>
-        <td>Identifying Automated Driving Systems-Dedicated Vehicles (ADS-DVs) Passenger Issues for Persons with Disabilities</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Human factors</td>
-    </tr>
-    
-    <tr>
-        <td>SAE J 3187/1</td>
-        <td>System Theoretic Process Analysis (STPA) Recommended Practices for Evaluations of Safety-Critical Systems in Any Industry - Appendix: STPA and Human Machine Interactions (HMIs)</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Human factors</td>
-    </tr>
-    
-    <tr>
-        <td>SAE J 3197</td>
-        <td>Automated Driving System Data Logger</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td>SAE J 3206</td>
-        <td>Taxonomy and Definition of Safety Principles for Automated Driving System (ADS)</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>ADAS/AD functions | Safety | Terminology</td>
-    </tr>
-    
-    <tr>
-        <td>SAE J 3224</td>
-        <td>V2X Sensor-Sharing for Cooperative & Automated Driving</td>
+        <td>SAE J2945/8</td>
+        <td>Cooperative Perception System</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
         <td>Perception / Sensors</td>
     </tr>
     
     <tr>
-        <td>SAE J 3251</td>
-        <td>Cooperative Driving Automation (CDA) Feature: Perception Status Sharing for Occluded Pedestrian Collision Avoidance</td>
+        <td>SAE J2945/D</td>
+        <td>Road user-to-Road User Courteous Communication</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>ADAS/AD functions | Perception / Sensors</td>
+        <td>Human factors</td>
     </tr>
     
     <tr>
-        <td>SAE J 3803</td>
-        <td>Reliability prediction for automotive electronics based on field return data</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Engineering and Management</td>
-    </tr>
-    
-    <tr>
-        <td>SAE J J3247</td>
-        <td>	Automated Driving System Test Facility Safety Practices</td>
-        <td>Published</td>
-        <td>SAE Society of Automotive Engineers, Inc</td>
-        <td>Safety</td>
-    </tr>
-    
-    <tr>
-        <td>SAE J2735D</td>
-        <td>Dedicated Short Range Communications (DSRC) Message Set Dictionary (REVISED)</td>
+        <td>SAE J2945/E</td>
+        <td>Data Set Requirements and Design to Support Traffic Signal Information Enabling Applications</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
         <td>Communication and Data sharing</td>
@@ -4219,6 +4710,30 @@ application requirements specification</td>
     </tr>
     
     <tr>
+        <td>SAE J3005-2</td>
+        <td>Permanently or Semi-Permanently Installed Diagnostic Communication Devices, Security Guidelines</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Security</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3016</td>
+        <td>Taxonomy and definitions for terms related driving automation systems for on-road motor vehicles</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>ADAS/AD functions | Terminology</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3018</td>
+        <td>Guidelines for Safe On-Road Testing of SAE Level 3, 4, and 5 Prototype Automated Driving Systems (ADS)</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>ADAS/AD functions | Safety</td>
+    </tr>
+    
+    <tr>
         <td>SAE J3045</td>
         <td>Truck & bus lane departure warning systems test procedure</td>
         <td>Published</td>
@@ -4229,6 +4744,30 @@ application requirements specification</td>
     <tr>
         <td>SAE J3061</td>
         <td>Cybersecurity Guidebook for Cyber-Physical Vehicle Systems</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Security</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3067_202010</td>
+        <td>Candidate Improvements to Dedicated Short Range Communications (DSRC) Message Set Dictionary [SAE J2735] Using Systems Engineering Methods(STABILIZED Oct 2020)</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3101/1</td>
+        <td>Hardware Protected Security Environment -  Application Programming Interface Analysis -  Information Report</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Security</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3101/3</td>
+        <td>Hardware Protected Security Environment Management of Confidential Data</td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
         <td>Security</td>
@@ -4259,19 +4798,291 @@ application requirements specification</td>
     </tr>
     
     <tr>
+        <td>SAE J3134</td>
+        <td>Automated Driving System (ADS) Marker Lamp</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Human factors | Safety</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3161</td>
+        <td>LTE Vehicle-to-Everything (LTE-V2X) Deployment Profiles and Radio Parameters for Single Radio Channel Multi-Service Coexistence</td>
+        <td>In development</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing | Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3161</td>
+        <td>LTE Vehicle-to-Everything (LTE-V2X) Deployment Profiles and Radio Parameters for Single Radio Channel Multi-Service Coexistence</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing | Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3161/1</td>
+        <td>On-Board System Requirements for LTE-V2X V2V Safety Communications</td>
+        <td>In development</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing | Communication and Data sharing | Safety | Safety</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3161/1</td>
+        <td>Onboard System Requirements for LTE-V2X V2V Safety Communications</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing | Communication and Data sharing | Safety | Safety</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3161/1A</td>
+        <td>Vehicle Level Validation Test Procedures for V2V Safety Communications</td>
+        <td>In development</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing | Safety</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3161/2</td>
+        <td>LTE Vehicle-to-Everything (LTE-V2X) Deployment Profiles and Radio Parameters for 10 MHz Channel</td>
+        <td>In development</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing | Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3161/2</td>
+        <td>LTE Vehicle-to-Everything (LTE-V2X) Deployment Profiles and Radio Parameters for PC5 Interface in 10 MHz Channel 180</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing | Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
         <td>SAE J3164</td>
-        <td>Taxonomy and Definitions for Terms Related to Automated Driving System Behaviors and Maneuvers for On-Road Motor Vehicles</td>
+        <td>Taxonomy and Definitions for Terms Related to Automated Driving System Behaviors and Maneuvers for On-Road Motor Vehicles </td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
         <td>ADAS/AD functions</td>
     </tr>
     
     <tr>
+        <td>SAE J3171</td>
+        <td>Identifying Automated Driving Systems-Dedicated Vehicles (ADS-DVs) Passenger Issues for Persons with Disabilities</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Human factors</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3187/1</td>
+        <td>System Theoretic Process Analysis (STPA) Recommended Practices for Evaluations of Safety-Critical Systems in Any Industry - Appendix: STPA and Human Machine Interactions (HMIs)</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Human factors</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3197</td>
+        <td>Automated Driving System Data Logger</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3201</td>
+        <td>Guidelines for Automotive Environment Cybersecurity Key Management and Credential Distribution</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Security</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3206</td>
+        <td>Taxonomy and Definition of Safety Principles for Automated Driving System (ADS)</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>ADAS/AD functions | Safety | Terminology</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3216</td>
+        <td>Taxonomy and Definitions for Terms Related to Cooperative Driving Automation for On-Road Motor Vehicles</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>ADAS/AD functions | Terminology</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3224</td>
+        <td>V2X Sensor-Sharing for Cooperative & Automated Driving</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Perception / Sensors</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3240</td>
+        <td>Passenger Vehicle Lane Departure Warning, Lane Keeping Assistance, and Lane Centering Assistance Systems Test Procedure</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>ADAS/AD functions</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3247</td>
+        <td>	Automated Driving System Test Facility Safety Practices</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3251</td>
+        <td>Cooperative Driving Automation (CDA) Feature: Perception Status Sharing for Occluded Pedestrian Collision Avoidance</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>ADAS/AD functions | Perception / Sensors</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3262</td>
+        <td>Active Safety Systems Sensor Calibration Terms and Definitions</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Perception / Sensors</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3286</td>
+        <td>Identity Management Entity within Security Services</td>
+        <td>In development</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Security</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3287</td>
+        <td>V2X Misbehavior Reporting</td>
+        <td>In development</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3292</td>
+        <td>Automated Vehicle Marshalling System</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>ADAS/AD functions</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3297</td>
+        <td>Analysis of V2X services on the Uu Interface</td>
+        <td>In development</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3298</td>
+        <td>Artificial Intelligence Data for Ground Vehicle Applications</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>A.I.</td>
+    </tr>
+    
+    <tr>
+        <td>SAE J3803</td>
+        <td>Reliability prediction for automotive electronics based on field return data</td>
+        <td>Published</td>
+        <td>SAE Society of Automotive Engineers, Inc</td>
+        <td>Engineering and Management</td>
+    </tr>
+    
+    <tr>
         <td>SS_V2X_001</td>
-        <td>Security Specification through the Systems Engineering Process for SAE V2X Standards</td>
+        <td>Security Specification through the Systems Engineering Process for SAE V2X Standards </td>
         <td>Published</td>
         <td>SAE Society of Automotive Engineers, Inc</td>
         <td>Engineering and Management | Security</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=53997&curItemNr=85&totalNrItems=149&optDisplay=100000&qSORT=TB&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=True&qINCLUDE_MOVED_ON=&qEND_CURRENT_STATUS_CODE=11+WI%3BM58&qSTOP_FLG=N&qKEYWORD_BOOLEAN=OR&qCLUSTER_BOOLEAN=OR&qCLUSTER=20&qFREQUENCIES_BOOLEAN=OR&qSTOPPING_OUTDATED=&butExpertSearch=Search&includeNonActiveTB=FALSE&includeSubProjectCode=FALSE&qREPORT_TYPE=" target="_blank">TR 103 576-1  Ver.  0.0.8  Ref.  DTR/ITS-00276-1  Technical Body ITS WG2  </a></td>
+        <td>Intelligent Transport Systems (ITS)- Pre-standardization study on ITS architecture- Part 1 Architecture for communications among ITS stations with multiple access layer technologies- Release 2</td>
+        <td>In development</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?wki_id=53991" target="_blank">TR 103 578  Ver.  0.0.15  Ref.  DTR/ITS-00185  Technical Body ITS WG1  </a></td>
+        <td>Intelligent Transport Systems (ITS)- Vehicular Communications- Informative report for the Maneuver Coordination Service Maneuver Coordination Service pre-study</td>
+        <td>In development</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>ADAS/AD functions | Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=63968&curItemNr=55&totalNrItems=157&optDisplay=100000&qSORT=TB&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=True&qINCLUDE_MOVED_ON=&qEND_CURRENT_STATUS_CODE=11+WI%3BM58&qSTOP_FLG=N&qKEYWORD_BOOLEAN=OR&qCLUSTER_BOOLEAN=OR&qCLUSTER=20&qFREQUENCIES_BOOLEAN=OR&qSTOPPING_OUTDATED=&butExpertSearch=Search&includeNonActiveTB=FALSE&includeSubProjectCode=FALSE&qREPORT_TYPE=TUBE" target="_blank">TR 103 860  Ref.  DTR/ITS-220  Technical Body ITS  </a></td>
+        <td>Intelligent Transport Systems (ITS)- On-board Weighing Equipment (OBW)- pre-standardisation study- Release 2 OBW study</td>
+        <td>In development</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Security</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=66306&curItemNr=8&totalNrItems=9&optDisplay=10&qSORT=HIGHVERSION&qETSI_ALL=&SearchPage=TRUE&qTB_ID=702%3BITS&qINCLUDE_SUB_TB=True&qACHIEVED_DAY=1&qACHIEVED_MONTH=6&qACHIEVED_YEAR=2022&qINCLUDE_MOVED_ON=&qMILESTONE=1&qSTOP_FLG=&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butSimple=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=SUMMARY" target="_blank">TR 103 893  Ref.  DTR/ITS-005223  Technical Body ITS WG5  </a></td>
+        <td>Intelligent Transport Systems (ITS)- On-board Weighing Equipment (OBW)- Threat, Vulnerability and Risk Assessment (TVRA)- Release 2 TVRA for OBW</td>
+        <td>In development</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Security</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=66308&curItemNr=6&totalNrItems=9&optDisplay=10&qSORT=HIGHVERSION&qETSI_ALL=&SearchPage=TRUE&qTB_ID=702%3BITS&qINCLUDE_SUB_TB=True&qACHIEVED_DAY=1&qACHIEVED_MONTH=6&qACHIEVED_YEAR=2022&qINCLUDE_MOVED_ON=&qMILESTONE=1&qSTOP_FLG=&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butSimple=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=SUMMARY" target="_blank">TR 103 895  Ref.  DTR/ITS-005226  Technical Body ITS WG5  </a></td>
+        <td>Intelligent Transport Systems (ITS)- On-board Weighing Equipment (OBW)- Security and Privacy study- Release 2 security and privacy study for OBW</td>
+        <td>In development</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Security</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=66544&curItemNr=51&totalNrItems=125&optDisplay=100000&qSORT=TB&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=True&qINCLUDE_MOVED_ON=&qEND_CURRENT_STATUS_CODE=11+WI%3BM58&qSTOP_FLG=N&qKEYWORD_BOOLEAN=OR&qCLUSTER_BOOLEAN=OR&qCLUSTER=20&qFREQUENCIES_BOOLEAN=OR&qSTOPPING_OUTDATED=&butExpertSearch=Search&includeNonActiveTB=FALSE&includeSubProjectCode=FALSE&qREPORT_TYPE=TUBE" target="_blank">TR 103 902  Ver.  0.0.1  Ref.  DTR/ITS-227  Technical Body ITS  </a></td>
+        <td>Intelligent Transport Systems (ITS)- General- Terms and Abbreviations- Release 2 Release 2 Terms and Abbreviations</td>
+        <td>In development</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Terminology</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=67466&curItemNr=72&totalNrItems=132&optDisplay=100000&qSORT=TB&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=&qINCLUDE_MOVED_ON=&qEND_CURRENT_STATUS_CODE=11+WI%3BM58&qSTOP_FLG=N&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qCLUSTER=20&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butExpertSearch=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=" target="_blank">TR 103 917  Ver.  0.0.9  Ref.  DTR/ITS-001964  Technical Body ITS WG1  </a></td>
+        <td>Intelligent Transport Systems (ITS)- Functional Safety- Pre-Standardization study- Release 2 Functional Safety Analysis</td>
+        <td>In development</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=68090" target="_blank">TR 103 970  Ver.  0.0.2  Ref.  DTR/ITS-00284  Technical Body ITS WG2  </a></td>
+        <td>Intelligent Transport Systems (ITS)- Feasibility study on the use of UWB- Release 2 UWB in ITS</td>
+        <td>In development</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=54222&curItemNr=138&totalNrItems=292&optDisplay=100000&qSORT=TB&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=&qINCLUDE_MOVED_ON=&qEND_CURRENT_STATUS_CODE=11+WI%3BM58&qSTOP_FLG=N&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qCLUSTER=19&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butExpertSearch=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=" target="_blank">TR 103 971  Ver.  1.3.3  Ref.  DTR/ITS-00546  Technical Body ITS WG5  </a></td>
+        <td>Intelligent Transport Systems (ITS)- Security- Threat, Vulnerability and Risk Analysis (TVRA) TVRA Revision</td>
+        <td>In development</td>
+        <td>ETSI European Telecommunications Standards Institute</td>
+        <td>Security</td>
     </tr>
     
     <tr>
@@ -4299,79 +5110,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=53997&curItemNr=85&totalNrItems=149&optDisplay=100000&qSORT=TB&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=True&qINCLUDE_MOVED_ON=&qEND_CURRENT_STATUS_CODE=11+WI%3BM58&qSTOP_FLG=N&qKEYWORD_BOOLEAN=OR&qCLUSTER_BOOLEAN=OR&qCLUSTER=20&qFREQUENCIES_BOOLEAN=OR&qSTOPPING_OUTDATED=&butExpertSearch=Search&includeNonActiveTB=FALSE&includeSubProjectCode=FALSE&qREPORT_TYPE=" target="_blank">TR 103 576-1  Ver.  0.0.8  Ref.  DTR/ITS-00276-1  Technical Body ITS WG2</a></td>
-        <td>Intelligent Transport Systems (ITS)- Pre-standardization study on ITS architecture- Part 1 Architecture for communications among ITS stations with multiple access layer technologies- Release 2</td>
-        <td>In development</td>
-        <td>ETSI European Telecommunications Standards Institute</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?wki_id=53991" target="_blank">TR 103 578  Ver.  0.0.15  Ref.  DTR/ITS-00185  Technical Body ITS WG1</a></td>
-        <td>Intelligent Transport Systems (ITS)- Vehicular Communications- Informative report for the Maneuver Coordination Service Maneuver Coordination Service pre-study</td>
-        <td>In development</td>
-        <td>ETSI European Telecommunications Standards Institute</td>
-        <td>ADAS/AD functions | Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=63968&curItemNr=55&totalNrItems=157&optDisplay=100000&qSORT=TB&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=True&qINCLUDE_MOVED_ON=&qEND_CURRENT_STATUS_CODE=11+WI%3BM58&qSTOP_FLG=N&qKEYWORD_BOOLEAN=OR&qCLUSTER_BOOLEAN=OR&qCLUSTER=20&qFREQUENCIES_BOOLEAN=OR&qSTOPPING_OUTDATED=&butExpertSearch=Search&includeNonActiveTB=FALSE&includeSubProjectCode=FALSE&qREPORT_TYPE=TUBE" target="_blank">TR 103 860  Ref.  DTR/ITS-220  Technical Body ITS</a></td>
-        <td>Intelligent Transport Systems (ITS)- On-board Weighing Equipment (OBW)- pre-standardisation study- Release 2 OBW study</td>
-        <td>In development</td>
-        <td>ETSI European Telecommunications Standards Institute</td>
-        <td>Security</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=66306&curItemNr=8&totalNrItems=9&optDisplay=10&qSORT=HIGHVERSION&qETSI_ALL=&SearchPage=TRUE&qTB_ID=702%3BITS&qINCLUDE_SUB_TB=True&qACHIEVED_DAY=1&qACHIEVED_MONTH=6&qACHIEVED_YEAR=2022&qINCLUDE_MOVED_ON=&qMILESTONE=1&qSTOP_FLG=&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butSimple=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=SUMMARY" target="_blank">TR 103 893  Ref.  DTR/ITS-005223  Technical Body ITS WG5</a></td>
-        <td>Intelligent Transport Systems (ITS)- On-board Weighing Equipment (OBW)- Threat, Vulnerability and Risk Assessment (TVRA)- Release 2 TVRA for OBW</td>
-        <td>In development</td>
-        <td>ETSI European Telecommunications Standards Institute</td>
-        <td>Security</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=66308&curItemNr=6&totalNrItems=9&optDisplay=10&qSORT=HIGHVERSION&qETSI_ALL=&SearchPage=TRUE&qTB_ID=702%3BITS&qINCLUDE_SUB_TB=True&qACHIEVED_DAY=1&qACHIEVED_MONTH=6&qACHIEVED_YEAR=2022&qINCLUDE_MOVED_ON=&qMILESTONE=1&qSTOP_FLG=&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butSimple=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=SUMMARY" target="_blank">TR 103 895  Ref.  DTR/ITS-005226  Technical Body ITS WG5</a></td>
-        <td>Intelligent Transport Systems (ITS)- On-board Weighing Equipment (OBW)- Security and Privacy study- Release 2 security and privacy study for OBW</td>
-        <td>In development</td>
-        <td>ETSI European Telecommunications Standards Institute</td>
-        <td>Security</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=66544&curItemNr=51&totalNrItems=125&optDisplay=100000&qSORT=TB&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=True&qINCLUDE_MOVED_ON=&qEND_CURRENT_STATUS_CODE=11+WI%3BM58&qSTOP_FLG=N&qKEYWORD_BOOLEAN=OR&qCLUSTER_BOOLEAN=OR&qCLUSTER=20&qFREQUENCIES_BOOLEAN=OR&qSTOPPING_OUTDATED=&butExpertSearch=Search&includeNonActiveTB=FALSE&includeSubProjectCode=FALSE&qREPORT_TYPE=TUBE" target="_blank">TR 103 902  Ver.  0.0.1  Ref.  DTR/ITS-227  Technical Body ITS</a></td>
-        <td>Intelligent Transport Systems (ITS)- General- Terms and Abbreviations- Release 2 Release 2 Terms and Abbreviations</td>
-        <td>In development</td>
-        <td>ETSI European Telecommunications Standards Institute</td>
-        <td>Terminology</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=67466&curItemNr=72&totalNrItems=132&optDisplay=100000&qSORT=TB&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=&qINCLUDE_MOVED_ON=&qEND_CURRENT_STATUS_CODE=11+WI%3BM58&qSTOP_FLG=N&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qCLUSTER=20&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butExpertSearch=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=" target="_blank">TR 103 917  Ver.  0.0.9  Ref.  DTR/ITS-001964  Technical Body ITS WG1</a></td>
-        <td>Intelligent Transport Systems (ITS)- Functional Safety- Pre-Standardization study- Release 2 Functional Safety Analysis</td>
-        <td>In development</td>
-        <td>ETSI European Telecommunications Standards Institute</td>
-        <td>Safety</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=68090" target="_blank">TR 103 970  Ver.  0.0.2  Ref.  DTR/ITS-00284  Technical Body ITS WG2</a></td>
-        <td>Intelligent Transport Systems (ITS)- Feasibility study on the use of UWB- Release 2 UWB in ITS</td>
-        <td>In development</td>
-        <td>ETSI European Telecommunications Standards Institute</td>
-        <td>Communication and Data sharing</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=54222&curItemNr=138&totalNrItems=292&optDisplay=100000&qSORT=TB&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=&qINCLUDE_MOVED_ON=&qEND_CURRENT_STATUS_CODE=11+WI%3BM58&qSTOP_FLG=N&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qCLUSTER=19&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butExpertSearch=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=" target="_blank">TR 103 971  Ver.  1.3.3  Ref.  DTR/ITS-00546  Technical Body ITS WG5</a></td>
-        <td>Intelligent Transport Systems (ITS)- Security- Threat, Vulnerability and Risk Analysis (TVRA) TVRA Revision</td>
-        <td>In development</td>
-        <td>ETSI European Telecommunications Standards Institute</td>
-        <td>Security</td>
-    </tr>
-    
-    <tr>
-        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=69582&curItemNr=8&totalNrItems=13&optDisplay=10&qSORT=HIGHVERSION&qETSI_ALL=&SearchPage=TRUE&qETSI_STANDARD_TYPE=%27TS%27&qINCLUDE_SUB_TB=True&qACHIEVED_DAY=1&qACHIEVED_MONTH=11&qACHIEVED_YEAR=2023&qINCLUDE_MOVED_ON=&qMILESTONE=1&qSTOP_FLG=&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butSimple=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=SUMMARY" target="_blank">TS 103 859  Ver.  0.0.1  Ref.  RTS/MSG-001142  Technical Body MSG</a></td>
+        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=69582&curItemNr=8&totalNrItems=13&optDisplay=10&qSORT=HIGHVERSION&qETSI_ALL=&SearchPage=TRUE&qETSI_STANDARD_TYPE=%27TS%27&qINCLUDE_SUB_TB=True&qACHIEVED_DAY=1&qACHIEVED_MONTH=11&qACHIEVED_YEAR=2023&qINCLUDE_MOVED_ON=&qMILESTONE=1&qSTOP_FLG=&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butSimple=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=SUMMARY" target="_blank">TS 103 859  Ver.  0.0.1  Ref.  RTS/MSG-001142  Technical Body MSG  </a></td>
         <td>Publicly Available Specification (PAS)- O-RAN Fronthaul Control, User and Synchronization Plane Specification v12.00- (O-RAN-WG4-.CUS.0-v12.00) O-RAN-WG4-.CUS.0-v12.00</td>
         <td>In development</td>
         <td>ETSI European Telecommunications Standards Institute</td>
@@ -4379,7 +5118,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=68518&curItemNr=37&totalNrItems=43&optDisplay=100&qSORT=HIGHVERSION&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=True&qACHIEVED_DAY=1&qACHIEVED_MONTH=4&qACHIEVED_YEAR=2023&qINCLUDE_MOVED_ON=True&qMILESTONE=1&qSTOP_FLG=&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butSimple=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=SUMMARY" target="_blank">TS 103 982  Ver.  0.0.3  Ref.  DTS/MSG-001134  Technical Body MSG</a></td>
+        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=68518&curItemNr=37&totalNrItems=43&optDisplay=100&qSORT=HIGHVERSION&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=True&qACHIEVED_DAY=1&qACHIEVED_MONTH=4&qACHIEVED_YEAR=2023&qINCLUDE_MOVED_ON=True&qMILESTONE=1&qSTOP_FLG=&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butSimple=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=SUMMARY" target="_blank">TS 103 982  Ver.  0.0.3  Ref.  DTS/MSG-001134  Technical Body MSG  </a></td>
         <td>Publicly Available Specification (PAS)- O-RAN Working Group 1 (Use Cases and Overall Architecture) O-RAN Architecture Description O-RAN Architecture Description O-RAN.WG1.OAD-R003-v08.00</td>
         <td>In development</td>
         <td>ETSI European Telecommunications Standards Institute</td>
@@ -4387,7 +5126,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=68519&curItemNr=40&totalNrItems=83&optDisplay=100000&qSORT=TB&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=&qINCLUDE_MOVED_ON=&qEND_CURRENT_STATUS_CODE=11+WI%3BM58&qSTOP_FLG=N&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qCLUSTER=18&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butExpertSearch=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=TUBE" target="_blank">TS 103 983  Ver.  0.0.1  Ref.  DTS/MSG-001135  Technical Body MSG</a></td>
+        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=68519&curItemNr=40&totalNrItems=83&optDisplay=100000&qSORT=TB&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=&qINCLUDE_MOVED_ON=&qEND_CURRENT_STATUS_CODE=11+WI%3BM58&qSTOP_FLG=N&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qCLUSTER=18&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butExpertSearch=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=TUBE" target="_blank">TS 103 983  Ver.  0.0.1  Ref.  DTS/MSG-001135  Technical Body MSG  </a></td>
         <td>Publicly Available Specification (PAS)- O-RAN Working Group 2 (Non-RT RIC and A1 interface WG) A1 interface General Aspects and Principles O-RAN.WG2.A1GAP-R003-v03.01</td>
         <td>In development</td>
         <td>ETSI European Telecommunications Standards Institute</td>
@@ -4395,7 +5134,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>TS 103 985  Ver.  0.0.0  Ref.  DTS/MSG-001136  Technical Body MSG</td>
+        <td>TS 103 985  Ver.  0.0.0  Ref.  DTS/MSG-001136  Technical Body MSG  </td>
         <td>Publicly Available Specification (PAS)- O-RAN Working Group 2 (Non-RT RIC and A1 interface WG) A1 interface Use Cases and Requirements O-RAN.WG2.A1UCR-R003-v01.01</td>
         <td>In development</td>
         <td>ETSI European Telecommunications Standards Institute</td>
@@ -4403,7 +5142,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=68521" target="_blank">TS 103 986  Ver.  0.0.0  Ref.  DTS/MSG-001137  Technical Body MSG</a></td>
+        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=68521" target="_blank">TS 103 986  Ver.  0.0.0  Ref.  DTS/MSG-001137  Technical Body MSG  </a></td>
         <td>Publicly Available Specification (PAS)- O-RAN Working Group 2 (Non-RT RIC and A1 interface WG) A1 interface Transport Protocol O-RAN.WG2.A1TP-R003-v02.01</td>
         <td>In development</td>
         <td>ETSI European Telecommunications Standards Institute</td>
@@ -4411,7 +5150,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>TS 103 987  Ver.  0.0.0  Ref.  DTS/MSG-001138  Technical Body MSG</td>
+        <td>TS 103 987  Ver.  0.0.0  Ref.  DTS/MSG-001138  Technical Body MSG  </td>
         <td>Publicly Available Specification (PAS)- O-RAN Working Group 2 (Non-RT RIC and A1 interface WG) A1 interface Application Protocol O-RAN.WG2.A1AP-R003-v04.00</td>
         <td>In development</td>
         <td>ETSI European Telecommunications Standards Institute</td>
@@ -4419,7 +5158,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=68523&curItemNr=32&totalNrItems=43&optDisplay=100&qSORT=HIGHVERSION&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=True&qACHIEVED_DAY=1&qACHIEVED_MONTH=4&qACHIEVED_YEAR=2023&qINCLUDE_MOVED_ON=True&qMILESTONE=1&qSTOP_FLG=&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butSimple=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=SUMMARY" target="_blank">TS 103 988  Ver.  0.0.0  Ref.  DTS/MSG-001139  Technical Body MSG</a></td>
+        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=68523&curItemNr=32&totalNrItems=43&optDisplay=100&qSORT=HIGHVERSION&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=True&qACHIEVED_DAY=1&qACHIEVED_MONTH=4&qACHIEVED_YEAR=2023&qINCLUDE_MOVED_ON=True&qMILESTONE=1&qSTOP_FLG=&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butSimple=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=SUMMARY" target="_blank">TS 103 988  Ver.  0.0.0  Ref.  DTS/MSG-001139  Technical Body MSG  </a></td>
         <td>Publicly Available Specification (PAS)- O-RAN Working Group 2 (Non-RT RIC and A1 interface WG) A1 interface Type Definitions O-RAN.WG2.A1TD-R003-v05.00</td>
         <td>In development</td>
         <td>ETSI European Telecommunications Standards Institute</td>
@@ -4427,7 +5166,7 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=68524&curItemNr=31&totalNrItems=43&optDisplay=100&qSORT=HIGHVERSION&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=True&qACHIEVED_DAY=1&qACHIEVED_MONTH=4&qACHIEVED_YEAR=2023&qINCLUDE_MOVED_ON=True&qMILESTONE=1&qSTOP_FLG=&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butSimple=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=SUMMARY" target="_blank">TS 103 989  Ver.  0.0.0  Ref.  DTS/MSG-001141  Technical Body MSG</a></td>
+        <td><a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=68524&curItemNr=31&totalNrItems=43&optDisplay=100&qSORT=HIGHVERSION&qETSI_ALL=&SearchPage=TRUE&qINCLUDE_SUB_TB=True&qACHIEVED_DAY=1&qACHIEVED_MONTH=4&qACHIEVED_YEAR=2023&qINCLUDE_MOVED_ON=True&qMILESTONE=1&qSTOP_FLG=&qKEYWORD_BOOLEAN=&qCLUSTER_BOOLEAN=&qFREQUENCIES_BOOLEAN=&qSTOPPING_OUTDATED=&butSimple=Search&includeNonActiveTB=FALSE&includeSubProjectCode=&qREPORT_TYPE=SUMMARY" target="_blank">TS 103 989  Ver.  0.0.0  Ref.  DTS/MSG-001141  Technical Body MSG  </a></td>
         <td>Publicly Available Specification (PAS)- O-RAN Working Group 2 (Non-RT RIC and A1 interface WG) A1 interface Test Specification O-RAN.WG2.A1TS-R003-V03.00</td>
         <td>In development</td>
         <td>ETSI European Telecommunications Standards Institute</td>
@@ -4435,11 +5174,19 @@ application requirements specification</td>
     </tr>
     
     <tr>
-        <td>TS 104 023  Ver.  0.0.1  Ref.  DTS/MSG-001143  Technical Body MSG</td>
+        <td>TS 104 023  Ver.  0.0.1  Ref.  DTS/MSG-001143  Technical Body MSG  </td>
         <td>Publicly Available Specification (PAS)- Open Front Haul Interface - Management Plane Specification vs 12.00- (O-RAN-WG4-.MP.0-v12.00) O-RAN-WG4-.MP.0-v12.00</td>
         <td>In development</td>
         <td>ETSI European Telecommunications Standards Institute</td>
         <td>Communication and Data sharing</td>
+    </tr>
+    
+    <tr>
+        <td>TS 16157-11</td>
+        <td>Intelligent transport systems - DATEX II data exchange specifications for traffic management and information - Part 11: Publication of machine interpretable traffic regulations</td>
+        <td>Published</td>
+        <td>CEN European Committee for Standardization</td>
+        <td>Communication and Data sharing | Geospatial/ Map services</td>
     </tr>
     
     <tr>
@@ -4464,6 +5211,14 @@ application requirements specification</td>
         <td>Published</td>
         <td>Underwriters Laboratories Inc.</td>
         <td>Safety</td>
+    </tr>
+    
+    <tr>
+        <td>UL 4740</td>
+        <td>Lidar and Lidar Systems Used in Vehicles</td>
+        <td>Published</td>
+        <td>Underwriters Laboratories Inc.</td>
+        <td>Perception / Sensors</td>
     </tr>
     
     <tr>
@@ -4510,7 +5265,7 @@ application requirements specification</td>
         <td>v150.4</td>
         <td>Accessibility for Connected and Autonomous Vehicle Infrastructure</td>
         <td>Published</td>
-        <td>Standards Council of Canada Notices of Intent</td>
+        <td>National Standard of Canada - Domestic</td>
         <td>Human factors | Safety</td>
     </tr>
     
@@ -4564,7 +5319,7 @@ application requirements specification</td>
     
     <tr>
         <td>VDA 5050</td>
-        <td>Interface for the communication between automated guided vehicles (AGV) and a master control; Version 1.1</td>
+        <td>Interface for the communication between automated guided vehicles (AGV) and a master control; Version 2.1.0</td>
         <td>Published</td>
         <td>Verband der Automobilindustrie</td>
         <td>Communication and Data sharing</td>
